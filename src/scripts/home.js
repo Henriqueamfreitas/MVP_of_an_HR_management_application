@@ -58,7 +58,19 @@ async function renderCompanies(){
     })
 }
 
+// We are going to edit the login button and redirect to the login html page
+const loginButton = document.querySelector('.header__buttons--login')
+const loginPath = '/src/pages/login.html'
+const registerPath = '/src/pages/register.html'
+const registerButton = document.querySelector('.header__buttons--register')
+function redirectPage(button, path){
+    button.addEventListener('click', ()=>{
+        location.replace(path)
+    })
+} 
 
 // Functions
 renderSelect()
 renderCompanies()
+redirectPage(loginButton, loginPath)
+redirectPage(registerButton, registerPath)
