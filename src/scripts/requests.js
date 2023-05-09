@@ -1,5 +1,7 @@
+// We are going to define the URL base
 const baseUrl = 'http://localhost:3333'
 
+// We are going to get an array with all the sectors in the API (Alimetício, varejo ...)
 export async function getAllCategories(){
     const allCategories = await fetch(`${baseUrl}/categories/readAll`, {
         method: 'GET',
