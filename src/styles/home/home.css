@@ -27,7 +27,7 @@ body{
     margin-right: .9375rem;
 }
 
-.header__logo--name{}
+/* .header__logo--name{} */
 
 /* HEADER__BUTTONS */
 .header__buttons{
@@ -73,7 +73,7 @@ body{
     margin-bottom: 1.6763rem;
 }
 
-.companies__select--option{}
+/* .companies__select--option{} */
 
 /* COMPANIES__CONTAINER */
 .companies__container{
@@ -87,7 +87,7 @@ body{
 }
 
 /* CONTAINER COMPANY */
-.container__company{}
+/* .container__company{} */
 
 .container__company--div{
     border: solid .0625rem blue ;
