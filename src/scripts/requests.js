@@ -122,6 +122,7 @@ export async function getCategoryInformation(categoryId){
     return categoryInformation
 }
 
+// We are going to get an array with all the departments
 export async function getAllDepartments(){
     const allDeparments = await fetch(`${baseUrl}/departments/readAll`, {
         method: 'GET',
@@ -139,6 +140,8 @@ export async function getAllDepartments(){
     return allDeparments
 }
 
+// We are going to create a function that recieves the company ID of the logged user and return
+// an array with these company characteristics
 export async function getCompanyById(companyId){
     const company = await fetch(`${baseUrl}/companies/readById/${companyId}`, {
         method: 'GET',
@@ -155,3 +158,22 @@ export async function getCompanyById(companyId){
 
     return company
 }
+
+// We are going to get an array with all the employees
+export async function getAllEmployees(){
+    const AllEmployees = await fetch(`${baseUrl}/employees/readAll`, {
+        method: 'GET',
+        headers: requestHeaders,
+    })
+    .then(async (res) => {
+        if(res.ok){
+            return res.json()
+        } else{
+            const response = await res.json()
+            console.log(response.message)
+        }
+    })
+
+    return AllEmployees
+}
+
