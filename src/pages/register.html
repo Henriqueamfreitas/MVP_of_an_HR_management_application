@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- CSS -->
         <link rel="stylesheet" href="../styles/reset.css">
+        <link rel="stylesheet" href="../styles/register/register.css">
     
         <!-- JS -->
         <script src="../scripts/register.js" defer type="module"></script>
@@ -24,5 +25,16 @@
         </div>
     </header>
 
+    <main class="main">
+        <img class="main__img" src="../../images/registerAndLoginPage.svg" alt="">
+        <form class="main__form">
+            <h2 class="main__form--h2">Cadastre-se</h2>
+            <input class="main__form--input" type="text" placeholder="Seu nome" name="name" id="name">
+            <input class="main__form--input" type="text" placeholder="Seu e-mail" name="email" id="email">
+            <input class="main__form--input" type="password" placeholder="Sua senha" name="password" id="password">
+            <button class="main__form--registerButton">Cadastrar</button>
+            <button class="main__form--returnButton">Retornar</button>
+        </form>
+    </main>
 </body>
 </html>

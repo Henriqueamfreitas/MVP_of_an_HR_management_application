@@ -1,0 +1,24 @@
+/* BODY */
+body{}
+
+/* HEADER */
+.header{}
+
+.header__logo{}
+
+.header__logo--symbol{}
+
+.header__logo--name{}
+
+.header__buttons{}
+
+.header__buttons--home{}
+
+.header__buttons--register{}
+
+/* MAIN */
+.main{}
+
+.main__img{
+    width: 100%;
+}

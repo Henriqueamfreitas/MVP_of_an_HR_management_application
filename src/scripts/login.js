@@ -11,6 +11,16 @@ function redirectPage(button, path){
     })
 }
 
+
+
+
+
+
+
+
+
+
+
 redirectPage(homeButton, homePath)
 redirectPage(registerButton, registerPath)
 redirectPage(formRegisterButton, registerPath)

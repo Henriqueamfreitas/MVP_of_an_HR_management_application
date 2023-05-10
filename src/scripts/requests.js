@@ -35,3 +35,4 @@ export async function getAllCompanies(){
     return allCompanies
 }
 
+// export async function validateLoginUser(){}
