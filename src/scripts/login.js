@@ -18,11 +18,13 @@ function redirectPage(button, path){
 async function handleLogin(){
     const loginButton = document.querySelector('.main__form--loginButton')
     const inputs = document.querySelectorAll('.main__form--input')
+    const emailInput = inputs[0]
     let user = {}
-    let count = 0
+    let count = 0    
 
     loginButton.addEventListener('click', async (event) => {
         event.preventDefault()
+        localStorage.setItem("@empresas:email", emailInput.value)
 
         inputs.forEach(( { name, value } ) => {
             user[name] = value
@@ -38,7 +40,7 @@ async function handleLogin(){
             const loginObject = await validateLoginUser(user)
     
             const objectStringfied = JSON.stringify(loginObject)
-            localStorage.setItem("loginObject", objectStringfied)
+            localStorage.setItem("@empresas:loginObject", objectStringfied)
 
             if(loginObject.isAdm === true){
                 location.replace('/src/pages/admin.html')

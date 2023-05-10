@@ -1,8 +1,11 @@
 // We are going to define the URL base
 const baseUrl = 'http://localhost:3333'
+const stringfiedToken = JSON.parse(localStorage.getItem("@empresas:loginObject")) || ''
+const token = stringfiedToken.authToken
+
 const requestHeaders = { 
     'Content-Type': 'application/json',
-    // Authorization: `Bearer ${token}`,                                  
+    Authorization: `Bearer ${token}`,                                  
 } 
 
 
@@ -61,6 +64,8 @@ export async function createNewUser(userBody){
     return user
 }
 
+// We are going to create a function that recieves an object with email and password and check if these 
+// credentials are correct
 export async function validateLoginUser(userBody){
     const user = await fetch(`${baseUrl}/auth/login`, {
         method: 'POST',
@@ -79,3 +84,43 @@ export async function validateLoginUser(userBody){
 
     return user
 }
+
+// We are going to get an array with all the information from the logged user
+export async function getLoggedUserInformation(){
+    const userInformation = await fetch(`${baseUrl}/employees/profile`, {
+        method: 'GET',
+        headers: requestHeaders,
+    })
+    .then(async (res) => {
+        if(res.ok){
+            return res.json()
+        } else{
+            const response = await res.json()
+            console.log(response.message)
+        }
+    })
+
+    return userInformation
+}
+
+// We are going to create a function that recieves the category ID of the logged user and return
+// an array with these department characteristics
+export async function getCategoryInformation(categoryId){
+    const categoryInformation = await fetch(`${baseUrl}/departments/readById/${categoryId}`, {
+        method: 'GET',
+        headers: requestHeaders,
+    })
+    .then(async (res) => {
+        if(res.ok){
+            return res.json()
+        } else{
+            const response = await res.json()
+            console.log(response.message)
+        }
+    })
+
+    return categoryInformation
+}
+
+
+
