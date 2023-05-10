@@ -1,4 +1,4 @@
-import { createNewUser } from './requests.js'
+import { createNewUser, validateLoginUser } from './requests.js'
 
 // We are going to edit the login and the register buttons and redirect to the login/register html page
 const homeButton = document.querySelector('.header__buttons--home')

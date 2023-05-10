@@ -1,3 +1,5 @@
+import { validateLoginUser } from './requests.js'
+
 // We are going to edit the login and the register buttons and redirect to the login/register html page
 const homeButton = document.querySelector('.header__buttons--home')
 const homePath = '/src/home.html'
@@ -11,7 +13,21 @@ function redirectPage(button, path){
     })
 }
 
+async function handleLogin(){
+    const loginButton = document.querySelector('.main__form--loginButton')
+    const inputs = document.querySelectorAll('.main__form--input')
+    let user = {}
 
+    loginButton.addEventListener('click', async (event) => {
+        event.preventDefault()
+
+        inputs.forEach(( { name, value } ) => {
+            user[name] = value
+        })
+        
+        console.log(await validateLoginUser(user))
+    })
+}
 
 
 
@@ -24,3 +40,4 @@ function redirectPage(button, path){
 redirectPage(homeButton, homePath)
 redirectPage(registerButton, registerPath)
 redirectPage(formRegisterButton, registerPath)
+handleLogin()

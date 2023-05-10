@@ -61,4 +61,21 @@ export async function createNewUser(userBody){
     return user
 }
 
-// export async function validateLoginUser(){}
+export async function validateLoginUser(userBody){
+    const user = await fetch(`${baseUrl}/auth/login`, {
+        method: 'POST',
+        headers: requestHeaders,
+        body: JSON.stringify(userBody),
+    })
+    .then(async (res) => {
+        if(res.ok){
+            console.log("credenciais válidas")
+            return res.json()
+        } else{
+            const response = await res.json()
+            console.log(response.message)
+        }
+    })
+
+    return user
+}
