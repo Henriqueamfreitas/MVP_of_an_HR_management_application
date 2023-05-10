@@ -1,5 +1,12 @@
-import { getAllDepartments, getCompanyById, getAllEmployees } from './requests.js'
+import { getAllDepartments, getCompanyById, getAllEmployees, getAllCompanies } from './requests.js'
 import { createDepartmentCard, renderDepartment, createUserCard, renderUser } from './render.js'
+
+const allDepartments = await getAllDepartments()
+const allEmployees = await getAllEmployees()
+const allCompanies = await getAllCompanies()
+// console.log(allDepartments)
+// console.log(allEmployees)
+// console.log(allCompanies)
 
 // We are going to edit the logout, redirect to the login html page and clear the localStorage
 const logoutButton = document.querySelector('.header__buttons--logout')
@@ -35,16 +42,64 @@ function closeModal(button, modal){
     })
 }
 
+// We are going to get all the COMPANIES from the API and render them on the HTML document
+async function renderSelect(){
+    // We are getting an array with all the companies from the API and assigning them to the variables 
+    // allCompanies
+    const allCompanies = await getAllCompanies()
+    // We are getting the 'select' from the HTML document
+    const select = document.querySelector('.select')
 
+    allCompanies.forEach((company) => {
+        // We are going to create the HTML element
+        const option = document.createElement('option')
+        
+        // We are going to assign value to the element
+        option.innerHTML = company.name
+        
+        // We are going to assign class and id to the element
+        option.value = company.id
+        option.classList = 'select__option'
+
+        // We are going to establish the hirarchy between the elements
+        select.append(option)
+    })
+}
+
+// We are going to create the function that filters the companies based on what is in the select
+async function handleSelect(){
+    const select = document.querySelector('.select')
+    const departmentContainer = document.querySelector('.department__cards')
+    const employeeContainer = document.querySelector('.users__cards')
+    
+    select.addEventListener('click', () => {
+        const value = select.value        
+        console.log(value)
+        const filteredDepartment = allDepartments.filter((department) => department.company_id === value)
+        const filteredEmployee = allEmployees.filter((employee) => employee.company_id === value)
+        // console.log(filteredDepartment)
+        // console.log(filteredEmployee)
+
+        if(value === ''){
+            departmentContainer.innerHTML = ''
+            employeeContainer.innerHTML = ''
+            renderDepartment(allDepartments)
+            renderUser(allEmployees)
+        } else{
+            departmentContainer.innerHTML = ''
+            employeeContainer.innerHTML = ''
+            renderDepartment(filteredDepartment)
+            renderUser(filteredEmployee)
+        }
+    })
+}
 
 
 
 
 handleCreateDepartmentModal()
 redirectPage(logoutButton, loginPath)
-
-const allDepartments = await getAllDepartments()
 renderDepartment(allDepartments)
-
-const allEmployees = await getAllEmployees()
 renderUser(allEmployees)
+renderSelect()
+handleSelect()

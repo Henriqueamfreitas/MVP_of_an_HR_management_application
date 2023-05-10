@@ -2,7 +2,8 @@ import { getAllCategories, getAllCompanies } from './requests.js'
 
 // We are going to get all the CATEGORIES from the API and render them on the HTML document
 async function renderSelect(){
-    // We are getting an array with all the categories from the API and assigning them to the variables allCategories
+    // We are getting an array with all the categories from the API and assigning them to the variables 
+    // allCategories
     const allCategories = await getAllCategories()
     // We are getting the 'select' from the HTML document
     const select = document.querySelector('.companies__select')
