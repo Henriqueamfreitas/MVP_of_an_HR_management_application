@@ -46,7 +46,7 @@ body{
 
 
 /* MAIN */
-.main{}
+/* .main{} */
 
 .main__img{
     width: 100%;
@@ -61,6 +61,7 @@ body{
     padding: 2.4375rem 2.625rem 2.6875rem 2.625rem;
     display: flex;
     flex-direction: column;
+    width: 25.375rem;
 }
 
 .main__form--h2{
@@ -73,6 +74,7 @@ body{
 
 .main__form--input{
     margin-bottom: .8125rem;
+    padding: 1.0625rem 0rem .8125rem 1.0625rem;
 }
 
 .main__form--loginButton{

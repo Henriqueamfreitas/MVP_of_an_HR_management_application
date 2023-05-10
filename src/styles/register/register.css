@@ -1,24 +1,95 @@
 /* BODY */
-body{}
+body{
+    display: flex;
+    flex-direction: column;    
+}
 
 /* HEADER */
-.header{}
+.header{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid grey;
+    padding: 1rem 8.75rem 1rem 8.75rem;
+}
 
-.header__logo{}
+.header__logo{
+    display: flex;
+    align-items: center;
+}
 
-.header__logo--symbol{}
+.header__logo--symbol{
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: blue;
+    margin-right: .9375rem;
+}
 
-.header__logo--name{}
+/* .header__logo--name{} */
 
-.header__buttons{}
+.header__buttons{
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
 
-.header__buttons--home{}
+.header__buttons--home{
+    padding: .8125rem 2.8125rem .8287rem 2.8125rem;
+    cursor: pointer;
+    margin-right: .6875rem;
+}
 
-.header__buttons--register{}
+.header__buttons--login{
+    padding: .73rem 1.75rem .9113rem 1.6875rem;
+    cursor: pointer;
+}
+
 
 /* MAIN */
 .main{}
 
 .main__img{
     width: 100%;
+}
+
+/* MAIN__FORM */
+.main__form{
+    position: absolute;
+    top: 13.9375rem;
+    left: 29.1875rem;
+    background-color: hsla(0, 0%, 100%, 0.95);
+    padding: 2.4375rem 2.625rem 2.6875rem 2.625rem;
+    display: flex;
+    flex-direction: column;
+    width: 25.375rem;
+}
+
+.main__form--h2{
+    margin-bottom: .875rem;
+}
+
+.main__form--input{
+    margin-bottom: .75rem;
+    padding: 1.0625rem 0rem .8125rem 1.0625rem;
+}
+
+.main__form--registerButton{
+    margin-top: .25rem;
+    margin-bottom: .75rem;
+    padding-top: .73rem;
+    padding-bottom: .9113rem;
+    background-color: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.main__form--returnButton{
+    margin-top: 0;
+    padding-top: .8125rem;
+    padding-bottom: .8287rem;
+    background-color: transparent;
+    color: blue;
+    border: 1px solid blue;
+    cursor: pointer;
 }
