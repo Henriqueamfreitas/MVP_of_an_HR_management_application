@@ -13,19 +13,39 @@ function redirectPage(button, path){
     })
 }
 
+// We are going to create a function that add an event to the login button, get all the value of the 
+// inputs and insert in an object and call the function validateLoginUser() with this object as a parameter
 async function handleLogin(){
     const loginButton = document.querySelector('.main__form--loginButton')
     const inputs = document.querySelectorAll('.main__form--input')
     let user = {}
+    let count = 0
 
     loginButton.addEventListener('click', async (event) => {
         event.preventDefault()
 
         inputs.forEach(( { name, value } ) => {
             user[name] = value
+            if(value === ''){
+                count+=1
+            }
         })
-        
-        console.log(await validateLoginUser(user))
+
+        if(count !== 0){
+            count = 0
+            alert('Preencha todos os campos necessários')
+        } else{
+            const loginObject = await validateLoginUser(user)
+    
+            const objectStringfied = JSON.stringify(loginObject)
+            localStorage.setItem("loginObject", objectStringfied)
+
+            if(loginObject.isAdm === true){
+                location.replace('/src/pages/admin.html')
+            } else{
+                location.replace('/src/pages/user.html')
+            }
+        }        
     })
 }
 
