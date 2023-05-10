@@ -122,5 +122,36 @@ export async function getCategoryInformation(categoryId){
     return categoryInformation
 }
 
+export async function getAllDepartments(){
+    const allDeparments = await fetch(`${baseUrl}/departments/readAll`, {
+        method: 'GET',
+        headers: requestHeaders,
+    })
+    .then(async (res) => {
+        if(res.ok){
+            return res.json()
+        } else{
+            const response = await res.json()
+            console.log(response.message)
+        }
+    })
 
+    return allDeparments
+}
 
+export async function getCompanyById(companyId){
+    const company = await fetch(`${baseUrl}/companies/readById/${companyId}`, {
+        method: 'GET',
+        headers: requestHeaders,
+    })
+    .then(async (res) => {
+        if(res.ok){
+            return res.json()
+        } else{
+            const response = await res.json()
+            console.log(response.message)
+        }
+    })
+
+    return company
+}
