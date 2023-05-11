@@ -254,3 +254,20 @@ export async function fireEmployee(employeeId){
 }
 
 
+export async function updateDepartment(departmentBody, departmentId){
+    const departmentUpdated = await fetch(`${baseUrl}/departments/update/${departmentId}`, {
+        method: 'PATCH',
+        headers: requestHeaders,
+        body: JSON.stringify(departmentBody), 
+    })
+    .then(async (res) => {
+        if(res.ok){
+            return res.json()
+        } else{
+            const response = await res.json()
+            console.log(response.message)
+        }
+    })
+
+    return departmentUpdated
+}

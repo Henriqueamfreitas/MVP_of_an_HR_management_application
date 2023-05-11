@@ -1,11 +1,11 @@
-import { getAllDepartments, getCompanyById, getAllEmployees, getAllCompanies, createNewDepartment, getAllUnemployed, hireEmployee, fireEmployee } from './requests.js'
+import { getAllDepartments, getCompanyById, getAllEmployees, getAllCompanies, createNewDepartment, getAllUnemployed, hireEmployee, fireEmployee, updateDepartment } from './requests.js'
 import {  renderDepartment, renderUser, renderModalUser } from './render.js'
 
 const allDepartments = await getAllDepartments()
 const allEmployees = await getAllEmployees()
 const allCompanies = await getAllCompanies()
 const allUnemployed = await getAllUnemployed()
-// console.log(allDepartments)
+console.log(allDepartments)
 // console.log(allEmployees)
 // console.log(allCompanies)
 
@@ -175,9 +175,9 @@ async function renderModalSeeDepartmentSelect(object){
 }
 
 
-// We are going to create a function that handles  the create department modal
-const modal = document.querySelector('.seeDepartment__container')
+// We are going to create a function that handles the create department modal
 export function handleSeeDepartmentModal(){
+    const modal = document.querySelector('.seeDepartment__container')
     const openButtons = document.querySelectorAll('.card__buttons--seeDepartment')
     const closeButton = document.querySelector('.seeDepartment__closeButton')
     
@@ -227,6 +227,25 @@ function handleHireEmployee(){
     })
 }
 
+
+// We are going to create a function that handles the create department modal
+export function handleUpdateDepartmentModal(){
+    const modal = document.querySelector('.updateDepartment__container')
+    const openButtons = document.querySelectorAll('.card__buttons--editDepartment')
+    const closeButton = document.querySelector('.updateDepartment__closeButton')
+    const input = document.querySelector('.updateDepartment__input')
+
+    openButtons.forEach((button) => {
+        button.addEventListener('click', (event) => {
+            modal.showModal()
+
+            const id = event.target.dataset.departmentId
+            const filteredDepartment = allDepartments.filter((department) => department.id === id)
+            input.value = filteredDepartment[0].description
+            closeModal(closeButton, modal)
+        })
+    })
+}
 
 // We are going to create a function that closes any modal
 function closeModal(button, modal){
