@@ -177,3 +177,25 @@ export async function getAllEmployees(){
     return AllEmployees
 }
 
+// We are going to create a function that recieves an object with department information and create
+// a department with these characteristics
+export async function createNewDepartment(departmentBody){
+    const newDepartment = await fetch(`${baseUrl}/departments/create`, {
+        method: 'POST',
+        headers: requestHeaders,
+        body: JSON.stringify(departmentBody),
+    })
+    .then(async (res) => {
+        if(res.ok){
+            return res.json()
+        } else{
+            const response = await res.json()
+            console.log(response.message)
+        }
+    })
+
+    return newDepartment
+}
+
+
+

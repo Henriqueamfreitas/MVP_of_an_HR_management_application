@@ -4,7 +4,7 @@ import {  createDepartmentCard, renderDepartment,  createUserCard, renderUser, r
 const allDepartments = await getAllDepartments()
 const allEmployees = await getAllEmployees()
 const allCompanies = await getAllCompanies()
-console.log(allDepartments)
+// console.log(allDepartments)
 // console.log(allEmployees)
 // console.log(allCompanies)
 
