@@ -233,6 +233,7 @@ export function handleUpdateDepartmentModal(){
     const modal = document.querySelector('.updateDepartment__container')
     const openButtons = document.querySelectorAll('.card__buttons--editDepartment')
     const closeButton = document.querySelector('.updateDepartment__closeButton')
+    const saveButton = document.querySelector('.updateDepartment__saveButton')
     const input = document.querySelector('.updateDepartment__input')
 
     openButtons.forEach((button) => {
@@ -240,10 +241,26 @@ export function handleUpdateDepartmentModal(){
             modal.showModal()
 
             const id = event.target.dataset.departmentId
+            localStorage.setItem("@empresas:departmentId", id)
             const filteredDepartment = allDepartments.filter((department) => department.id === id)
             input.value = filteredDepartment[0].description
             closeModal(closeButton, modal)
         })
+    })
+    saveButton.addEventListener('click', (event) => {
+        const departmentId = localStorage.getItem("@empresas:departmentId")
+        const newDescription = input.value
+        const filteredDepartment = allDepartments.filter((department) => department.id === departmentId)
+        let updatedDepartment = {}
+        
+        updatedDepartment['description'] = newDescription
+        updatedDepartment['name'] = filteredDepartment[0].name
+        console.log(departmentId)
+        console.log(updatedDepartment)
+        
+        updateDepartment(updatedDepartment, departmentId)
+        modal.close()
+        location.reload()
     })
 }
 
