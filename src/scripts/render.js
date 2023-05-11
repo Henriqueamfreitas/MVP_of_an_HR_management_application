@@ -1,4 +1,5 @@
 import { getAllDepartments, getCompanyById, getAllEmployees } from './requests.js'
+import { modal, closeButton, createButton } from './admin.js'
 
 const allDepartments = await getAllDepartments()
 // console.log(allDepartments)
@@ -126,3 +127,5 @@ export function renderUser(array){
         cards.append(card)
     })
 }
+
+console.log(modal)

@@ -19,30 +19,7 @@ function redirectPage(button, path){
     })
 }
 
-// We are going to create a function that opens the create category modal
-function handleCreateDepartmentModal(){
-    const openButton = document.querySelector('.department__top--button')
-    const modal = document.querySelector('.createDepartment__container')
-    const closeButton = document.querySelector('.createDepartment__form--closeButton')
-    const createButton = document.querySelector('.createDepartment__form--createButton')
-
-    openButton.addEventListener('click', (event) => {
-        event.preventDefault()
-        
-        modal.showModal()
-        closeModal(closeButton, modal)
-    })
-}
-
-// We are going to create a function that closes any modal
-function closeModal(button, modal){
-    button.addEventListener('click', (event) => {
-        event.preventDefault()
-        modal.close()
-    })
-}
-
-// We are going to get all the COMPANIES from the API and render them on the HTML document
+// We are going to get all the COMPANIES from the API and render them on the select
 async function renderSelect(){
     // We are getting an array with all the companies from the API and assigning them to the variables 
     // allCompanies
@@ -66,7 +43,8 @@ async function renderSelect(){
     })
 }
 
-// We are going to create the function that filters the companies based on what is in the select
+// We are going to create the function that filters the departments and employees based on what 
+// is in the select
 async function handleSelect(){
     const select = document.querySelector('.select')
     const departmentContainer = document.querySelector('.department__cards')
@@ -74,11 +52,8 @@ async function handleSelect(){
     
     select.addEventListener('click', () => {
         const value = select.value        
-        console.log(value)
         const filteredDepartment = allDepartments.filter((department) => department.company_id === value)
         const filteredEmployee = allEmployees.filter((employee) => employee.company_id === value)
-        // console.log(filteredDepartment)
-        // console.log(filteredEmployee)
 
         if(value === ''){
             departmentContainer.innerHTML = ''
@@ -94,10 +69,55 @@ async function handleSelect(){
     })
 }
 
+// We are going to create a function that closes any modal
+function closeModal(button, modal){
+    button.addEventListener('click', (event) => {
+        event.preventDefault()
+        modal.close()
+    })
+}
+
+// We are going to create a function that opens the create category modal
+function handleCreateDepartmentModal(){
+    const openButton = document.querySelector('.department__top--button')
+    const modal = document.querySelector('.createDepartment__container')
+    const closeButton = document.querySelector('.createDepartment__form--closeButton')
+    const createButton = document.querySelector('.createDepartment__form--createButton')
+
+    openButton.addEventListener('click', (event) => {
+        event.preventDefault()
+        
+        modal.showModal()
+        closeModal(closeButton, modal)
+    })
+}
+
+export const modal = document.querySelector('.seeDepartment__container')
+
+export const closeButton = document.querySelector('.seeDepartment__hireButton')
+export const createButton = document.querySelector('.seeDepartment__hireButton')
+
+function handleSeeDepartmentModal(){
+    const openButton = document.querySelector('.card__buttons--seeDepartment')
+    console.log(openButton)
+    console.log(modal)
+    console.log(closeButton)
+    console.log(createButton)
+
+    // openButton.addEventListener('click', (event) => {
+    //     event.preventDefault()
+        
+    //     modal.showModal()
+    //     closeModal(closeButton, modal)
+    // })
+}
+
+
 
 
 
 handleCreateDepartmentModal()
+handleSeeDepartmentModal()
 redirectPage(logoutButton, loginPath)
 renderDepartment(allDepartments)
 renderUser(allEmployees)
