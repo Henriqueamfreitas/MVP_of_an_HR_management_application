@@ -1,9 +1,10 @@
-import { getAllDepartments, getCompanyById, getAllEmployees, getAllCompanies, createNewDepartment } from './requests.js'
+import { getAllDepartments, getCompanyById, getAllEmployees, getAllCompanies, createNewDepartment, getAllUnemployed, hireEmployee } from './requests.js'
 import {  renderDepartment, renderUser, renderModalUser } from './render.js'
 
 const allDepartments = await getAllDepartments()
 const allEmployees = await getAllEmployees()
 const allCompanies = await getAllCompanies()
+const allUnemployed = await getAllUnemployed()
 // console.log(allDepartments)
 // console.log(allEmployees)
 // console.log(allCompanies)
@@ -97,58 +98,33 @@ async function renderModalCompanySelect(){
 }
 
 
-/////////////////////////////// VOLTAR AQUI -  NÃO FIZ NADA AINDA ///////////////////////////////
 // We are going to get all the EMPLOYEES from the API and render them on the select in the seeDeparmtnet 
 // modal. Its the same idea as the renderSelect(), but we apply it on the see department modal and with
 // employees instead of companies
-async function renderModalSelect(){
-    // We are getting an array with all the companies from the API and assigning them to the variables 
-    // allCompanies
-    const allCompanies = await getAllCompanies()
+async function renderModalSeeDepartmentSelect(object){
     // We are getting the 'select' from the HTML document
-    const select = document.querySelector('.select')
+    const select = document.querySelector('.seeDepartment__select')
+    select.innerHTML = ''
+    const option = document.createElement('option')
+    option.innerHTML = 'Selecionar usuário'
+    option.value = ''
+    option.classList = 'seeDepartment__select--option'
+    select.append(option)
 
-    allCompanies.forEach((company) => {
+
+    object.forEach((employee) => {
         // We are going to create the HTML element
         const option = document.createElement('option')
         
         // We are going to assign value to the element
-        option.innerHTML = company.name
+        option.innerHTML = employee.name
         
         // We are going to assign class and id to the element
-        option.value = company.id
-        option.classList = 'select__option'
+        option.value = employee.id
+        option.classList = 'seeDepartment__select--option'
 
         // We are going to establish the hirarchy between the elements
         select.append(option)
-    })
-}
-
-/////////////////////////////// VOLTAR AQUI -  NÃO FIZ NADA AINDA ///////////////////////////////
-// We are going to create the function that filters the employees based on what 
-// is in the select and show them on the modal. Its the same idea as the handleSelect(), but we 
-// apply it on the see department modal with employees instead of companies
-async function handleModalSelect(){
-    const select = document.querySelector('.select')
-    const departmentContainer = document.querySelector('.department__cards')
-    const employeeContainer = document.querySelector('.users__cards')
-    
-    select.addEventListener('click', () => {
-        const value = select.value        
-        const filteredDepartment = allDepartments.filter((department) => department.company_id === value)
-        const filteredEmployee = allEmployees.filter((employee) => employee.company_id === value)
-
-        if(value === ''){
-            departmentContainer.innerHTML = ''
-            employeeContainer.innerHTML = ''
-            renderDepartment(allDepartments)
-            renderUser(allEmployees)
-        } else{
-            departmentContainer.innerHTML = ''
-            employeeContainer.innerHTML = ''
-            renderDepartment(filteredDepartment)
-            renderUser(filteredEmployee)
-        }
     })
 }
 
@@ -160,6 +136,8 @@ function handleCreateDepartmentModal(){
     const modal = document.querySelector('.createDepartment__container')
     const closeButton = document.querySelector('.createDepartment__form--closeButton')
     const createButton = document.querySelector('.createDepartment__form--createButton')
+    
+
     renderModalCompanySelect()
 
     openButton.addEventListener('click', (event) => {
@@ -169,8 +147,7 @@ function handleCreateDepartmentModal(){
         closeModal(closeButton, modal)
     })
 
-    createButton.addEventListener('click', (event) => {
-        event.preventDefault()
+    createButton.addEventListener('click', async (event) => {
         let department = {}
         let count = 0
         const inputs = document.querySelectorAll('.createDepartment__form--input')
@@ -193,30 +170,63 @@ function handleCreateDepartmentModal(){
             alert('Por favor, preencha todos os campos')
         } else{
             // console.log(department)
-            createNewDepartment(department)
-            renderDepartment(allDepartments)
+            await createNewDepartment(department)
+            await renderDepartment(allDepartments)
             modal.close()
         }        
     })
 }
 
 
-export const createButton = document.querySelector('.seeDepartment__hireButton')
 
+const modal = document.querySelector('.seeDepartment__container')
 export function handleSeeDepartmentModal(){
-    const modal = document.querySelector('.seeDepartment__container')
     const openButtons = document.querySelectorAll('.card__buttons--seeDepartment')
     const closeButton = document.querySelector('.seeDepartment__closeButton')
-
+    
+    
+    
     openButtons.forEach((button) => {
         button.addEventListener('click', (event) => {
             modal.showModal()
+            
             localStorage.setItem("@empresas:departmentId", event.target.dataset.departmentId)
+            renderModalSeeDepartmentSelect(allUnemployed)
+            
             renderModalUser(allEmployees)
+            handleHireEmployee()
             closeModal(closeButton, modal)
         })
     })
 }
+
+function handleHireEmployee(){
+    const createButton = document.querySelector('.seeDepartment__hireButton')
+    createButton.addEventListener('click', async(event) => {
+        const departmentId = localStorage.getItem("@empresas:departmentId")
+        const select = document.querySelector('.seeDepartment__select')
+        const employeeId = select.value
+        const departmentEmployees = document.querySelector('.seeDepartment__employess')
+        const userCards = document.querySelector('.users__cards')
+    
+        let departmentObject = {}
+        departmentObject['department_id'] = departmentId
+        
+        if(select.value === ''){
+            alert('Por favor, selecione o usuário a ser contratado')
+        } else{
+            select.innerHTML = ''
+            departmentEmployees.innerHTML = ''
+            departmentEmployees.innerHTML = ''
+            userCards.innerHTML = ''
+    
+            await hireEmployee(departmentObject, employeeId)
+            await renderModalUser(allEmployees)
+            modal.close()
+        }
+    })
+}
+
 
 // We are going to create a function that closes any modal
 function closeModal(button, modal){

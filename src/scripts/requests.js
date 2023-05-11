@@ -197,5 +197,43 @@ export async function createNewDepartment(departmentBody){
     return newDepartment
 }
 
+// We are going to get an array with all the employees that are unemployed
+export async function getAllUnemployed(){
+    const allUnemployed = await fetch(`${baseUrl}/employees/outOfWork`, {
+        method: 'GET',
+        headers: requestHeaders,
+    })
+    .then(async (res) => {
+        if(res.ok){
+            return res.json()
+        } else{
+            const response = await res.json()
+            console.log(response.message)
+        }
+    })
+
+    return allUnemployed
+}
+
+// We are going to create a function that recieves an object with departmentId and an UserId and assign
+// this employee to this department
+export async function hireEmployee(departmentId, employeeId){
+    const newEmployee = await fetch(`${baseUrl}/employees/hireEmployee/${employeeId}`, {
+        method: 'PATCH',
+        headers: requestHeaders,
+        body: JSON.stringify(departmentId),
+    })
+    .then(async (res) => {
+        if(res.ok){
+            return res.json()
+        } else{
+            const response = await res.json()
+            console.log(response.message)
+        }
+    })
+
+    return newEmployee
+}
+
 
 
