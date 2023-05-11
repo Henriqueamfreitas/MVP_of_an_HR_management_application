@@ -1,5 +1,5 @@
-import { getAllDepartments, getCompanyById, getAllEmployees, getAllCompanies } from './requests.js'
-import {  createDepartmentCard, renderDepartment,  createUserCard, renderUser, renderModalUser } from './render.js'
+import { getAllDepartments, getCompanyById, getAllEmployees, getAllCompanies, createNewDepartment } from './requests.js'
+import {  renderDepartment, renderUser, renderModalUser } from './render.js'
 
 const allDepartments = await getAllDepartments()
 const allEmployees = await getAllEmployees()
@@ -70,6 +70,32 @@ async function handleSelect(){
     })
 }
 
+// We are going to get all the EMPLOYEES from the API and render them on the select in the createDeparmtnet 
+// modal. Its the same idea as the renderSelect(), but we apply it on the createDepartment modal and with
+// employees instead of companies
+async function renderModalCompanySelect(){
+    // We are getting an array with all the companies from the API and assigning them to the variables 
+    // allCompanies
+    const allCompanies = await getAllCompanies()
+    // We are getting the 'select' from the HTML document
+    const select = document.querySelector('.createDepartment__form--select')
+
+    allCompanies.forEach((company) => {
+        // We are going to create the HTML element
+        const option = document.createElement('option')
+        
+        // We are going to assign value to the element
+        option.innerHTML = company.name
+        
+        // We are going to assign class and id to the element
+        option.value = company.id
+        option.classList = 'form__select--option'
+
+        // We are going to establish the hirarchy between the elements
+        select.append(option)
+    })
+}
+
 
 /////////////////////////////// VOLTAR AQUI -  NÃO FIZ NADA AINDA ///////////////////////////////
 // We are going to get all the EMPLOYEES from the API and render them on the select in the seeDeparmtnet 
@@ -134,12 +160,43 @@ function handleCreateDepartmentModal(){
     const modal = document.querySelector('.createDepartment__container')
     const closeButton = document.querySelector('.createDepartment__form--closeButton')
     const createButton = document.querySelector('.createDepartment__form--createButton')
+    renderModalCompanySelect()
 
     openButton.addEventListener('click', (event) => {
         event.preventDefault()
         
         modal.showModal()
         closeModal(closeButton, modal)
+    })
+
+    createButton.addEventListener('click', (event) => {
+        event.preventDefault()
+        let department = {}
+        let count = 0
+        const inputs = document.querySelectorAll('.createDepartment__form--input')
+        const select = document.querySelector('.createDepartment__form--select')
+
+        inputs.forEach((input) => {
+            if(input.value === ''){
+                count+=1
+            }
+            department[input.name] = input.value
+        })
+        
+        department['company_id'] = select.value
+        if(select.value === ''){
+            count+=1
+        }
+
+        if(count !== 0){
+            count = 0
+            alert('Por favor, preencha todos os campos')
+        } else{
+            // console.log(department)
+            createNewDepartment(department)
+            renderDepartment(allDepartments)
+            modal.close()
+        }        
     })
 }
 
@@ -177,4 +234,3 @@ renderDepartment(allDepartments)
 renderUser(allEmployees)
 renderSelect()
 handleSelect()
-// renderModalUser(allEmployees)
