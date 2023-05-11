@@ -1,4 +1,4 @@
-import { getAllDepartments, getCompanyById, getAllEmployees, getAllCompanies, createNewDepartment, getAllUnemployed, hireEmployee } from './requests.js'
+import { getAllDepartments, getCompanyById, getAllEmployees, getAllCompanies, createNewDepartment, getAllUnemployed, hireEmployee, fireEmployee } from './requests.js'
 import {  renderDepartment, renderUser, renderModalUser } from './render.js'
 
 const allDepartments = await getAllDepartments()
@@ -97,40 +97,7 @@ async function renderModalCompanySelect(){
     })
 }
 
-
-// We are going to get all the EMPLOYEES from the API and render them on the select in the seeDeparmtnet 
-// modal. Its the same idea as the renderSelect(), but we apply it on the see department modal and with
-// employees instead of companies
-async function renderModalSeeDepartmentSelect(object){
-    // We are getting the 'select' from the HTML document
-    const select = document.querySelector('.seeDepartment__select')
-    select.innerHTML = ''
-    const option = document.createElement('option')
-    option.innerHTML = 'Selecionar usuário'
-    option.value = ''
-    option.classList = 'seeDepartment__select--option'
-    select.append(option)
-
-
-    object.forEach((employee) => {
-        // We are going to create the HTML element
-        const option = document.createElement('option')
-        
-        // We are going to assign value to the element
-        option.innerHTML = employee.name
-        
-        // We are going to assign class and id to the element
-        option.value = employee.id
-        option.classList = 'seeDepartment__select--option'
-
-        // We are going to establish the hirarchy between the elements
-        select.append(option)
-    })
-}
-
-
-
-// We are going to create a function that opens the create category modal
+// We are going to create a function that opens the create department modal
 function handleCreateDepartmentModal(){
     const openButton = document.querySelector('.department__top--button')
     const modal = document.querySelector('.createDepartment__container')
@@ -177,8 +144,38 @@ function handleCreateDepartmentModal(){
     })
 }
 
+// We are going to get all the EMPLOYEES from the API and render them on the select in the seeDeparmtnet 
+// modal. Its the same idea as the renderSelect(), but we apply it on the see department modal and with
+// employees instead of companies
+async function renderModalSeeDepartmentSelect(object){
+    // We are getting the 'select' from the HTML document
+    const select = document.querySelector('.seeDepartment__select')
+    select.innerHTML = ''
+    const option = document.createElement('option')
+    option.innerHTML = 'Selecionar usuário'
+    option.value = ''
+    option.classList = 'seeDepartment__select--option'
+    select.append(option)
 
 
+    object.forEach((employee) => {
+        // We are going to create the HTML element
+        const option = document.createElement('option')
+        
+        // We are going to assign value to the element
+        option.innerHTML = employee.name
+        
+        // We are going to assign class and id to the element
+        option.value = employee.id
+        option.classList = 'seeDepartment__select--option'
+
+        // We are going to establish the hirarchy between the elements
+        select.append(option)
+    })
+}
+
+
+// We are going to create a function that handles  the create department modal
 const modal = document.querySelector('.seeDepartment__container')
 export function handleSeeDepartmentModal(){
     const openButtons = document.querySelectorAll('.card__buttons--seeDepartment')
@@ -200,6 +197,8 @@ export function handleSeeDepartmentModal(){
     })
 }
 
+
+// We are going to create a function that hire an employee
 function handleHireEmployee(){
     const createButton = document.querySelector('.seeDepartment__hireButton')
     createButton.addEventListener('click', async(event) => {
@@ -222,6 +221,7 @@ function handleHireEmployee(){
     
             await hireEmployee(departmentObject, employeeId)
             await renderModalUser(allEmployees)
+            location.reload()
             modal.close()
         }
     })

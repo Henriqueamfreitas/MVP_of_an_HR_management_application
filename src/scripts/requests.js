@@ -235,5 +235,22 @@ export async function hireEmployee(departmentId, employeeId){
     return newEmployee
 }
 
+// We are going to create a function that recieves an UserId and fire him
+export async function fireEmployee(employeeId){
+    const firedEmployee = await fetch(`${baseUrl}/employees/dismissEmployee/${employeeId}`, {
+        method: 'PATCH',
+        headers: requestHeaders,
+    })
+    .then(async (res) => {
+        if(res.ok){
+            return res.json()
+        } else{
+            const response = await res.json()
+            console.log(response.message)
+        }
+    })
+
+    return firedEmployee
+}
 
 

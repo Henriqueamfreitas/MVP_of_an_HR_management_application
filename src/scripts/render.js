@@ -1,4 +1,4 @@
-import { getAllDepartments, getCompanyById, getAllEmployees } from './requests.js'
+import { getAllDepartments, getCompanyById, getAllEmployees, fireEmployee } from './requests.js'
 import { handleSeeDepartmentModal } from './admin.js'
 
 const allDepartments = await getAllDepartments()
@@ -165,6 +165,15 @@ export async function createModalUserCard(object){
     // Establishing the hierarchy between the elements
     card.append(h1, p, button)
     
+    button.addEventListener('click', async(event) => {
+        // alert('click')
+        const id = event.target.dataset.employeeId
+        const modal = document.querySelector('.seeDepartment__container')
+        await fireEmployee(id)
+        modal.close()
+        location.reload()
+    })
+
     return card
 }
 
