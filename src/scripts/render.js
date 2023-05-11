@@ -1,5 +1,5 @@
 import { getAllDepartments, getCompanyById, getAllEmployees } from './requests.js'
-import { modal, closeButton, createButton } from './admin.js'
+import { handleSeeDepartmentModal } from './admin.js'
 
 const allDepartments = await getAllDepartments()
 // console.log(allDepartments)
@@ -59,14 +59,16 @@ export async function createDepartmentCard(object){
 }
 
 // We are going to create a function that render the cards of the department
-export function renderDepartment(array){
+export async function renderDepartment(array){
     const cards = document.querySelector('.department__cards')
     cards.innerHTML = ''
 
     array.forEach(async (element) => {
         const card = await createDepartmentCard(element)
         cards.append(card)
+        handleSeeDepartmentModal()
     })
+
 }
 
 
@@ -128,4 +130,9 @@ export function renderUser(array){
     })
 }
 
-console.log(modal)
+// const openButton = document.querySelectorAll('.card__buttons--seeDepartment')
+// console.log(openButton)
+// openButton.addEventListener('click', (event) => {
+//     event.preventDefault()
+//     alert('its ok')
+// })

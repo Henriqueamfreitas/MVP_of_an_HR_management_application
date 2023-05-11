@@ -1,5 +1,5 @@
 import { getAllDepartments, getCompanyById, getAllEmployees, getAllCompanies } from './requests.js'
-import { createDepartmentCard, renderDepartment, createUserCard, renderUser } from './render.js'
+import {  createDepartmentCard, renderDepartment,  createUserCard, renderUser } from './render.js'
 
 const allDepartments = await getAllDepartments()
 const allEmployees = await getAllEmployees()
@@ -7,6 +7,7 @@ const allCompanies = await getAllCompanies()
 // console.log(allDepartments)
 // console.log(allEmployees)
 // console.log(allCompanies)
+
 
 // We are going to edit the logout, redirect to the login html page and clear the localStorage
 const logoutButton = document.querySelector('.header__buttons--logout')
@@ -69,13 +70,6 @@ async function handleSelect(){
     })
 }
 
-// We are going to create a function that closes any modal
-function closeModal(button, modal){
-    button.addEventListener('click', (event) => {
-        event.preventDefault()
-        modal.close()
-    })
-}
 
 // We are going to create a function that opens the create category modal
 function handleCreateDepartmentModal(){
@@ -92,34 +86,42 @@ function handleCreateDepartmentModal(){
     })
 }
 
-export const modal = document.querySelector('.seeDepartment__container')
 
-export const closeButton = document.querySelector('.seeDepartment__hireButton')
 export const createButton = document.querySelector('.seeDepartment__hireButton')
 
-function handleSeeDepartmentModal(){
-    const openButton = document.querySelector('.card__buttons--seeDepartment')
-    console.log(openButton)
-    console.log(modal)
-    console.log(closeButton)
-    console.log(createButton)
+const modal = document.querySelector('.seeDepartment__container')
+export function handleSeeDepartmentModal(){
+    const openButtons = document.querySelectorAll('.card__buttons--seeDepartment')
+    const closeButton = document.querySelector('.seeDepartment__hireButton')
 
-    // openButton.addEventListener('click', (event) => {
-    //     event.preventDefault()
-        
-    //     modal.showModal()
-    //     closeModal(closeButton, modal)
-    // })
+    console.log(openButtons)
+    // console.log(createButton)
+
+    openButtons.forEach((button) => {
+        button.addEventListener('click', (event) => {
+            // event.preventDefault()
+            
+            modal.showModal()
+            // localStorage.setItem("id", event.target.dataset.postId)
+            closeModal(closeButton, modal)
+        })
+    })
+}
+
+// We are going to create a function that closes any modal
+function closeModal(button, modal){
+    button.addEventListener('click', (event) => {
+        event.preventDefault()
+        modal.close()
+    })
 }
 
 
 
-
-
 handleCreateDepartmentModal()
-handleSeeDepartmentModal()
 redirectPage(logoutButton, loginPath)
 renderDepartment(allDepartments)
 renderUser(allEmployees)
 renderSelect()
 handleSelect()
+// handleSeeDepartmentModal()
