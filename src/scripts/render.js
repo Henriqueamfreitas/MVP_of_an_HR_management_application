@@ -30,10 +30,17 @@ export async function createDepartmentCard(object){
     cardButtons.classList = 'card__buttons'
     seeDepartment.classList = 'card__buttons--seeDepartment'
     seeDepartment.dataset.departmentId = object.id 
+    seeDepartmentImg.classList = 'seeDepartment__img'
+    seeDepartmentImg.dataset.departmentId = object.id
     editDepartment.classList = 'card__buttons--editDepartment'
     editDepartment.dataset.departmentId = object.id 
+    editDepartmentImg.classList = 'editDepartment__img'
+    editDepartmentImg.dataset.departmentId = object.id
     excludeDepartment.classList = 'card__buttons--excludeDepartment'
     excludeDepartment.dataset.departmentId = object.id 
+    excludeDepartmentImg.classList = 'excludeDepartment__img'
+    excludeDepartmentImg.dataset.departmentId = object.id
+
     
     // Getting the name of the company by the company id
     const id = object.company_id
@@ -71,9 +78,9 @@ export async function renderDepartment(array){
 
 }
 
-
 const allEmployees = await getAllEmployees()
-// We are going to create a function that create the card of the user
+// We are going to create a function that create the card of the user to be rendered on the admin.HTML
+// page
 export async function createUserCard(object){
     // We are going to create the HTML elements
     const card = document.createElement('div')
@@ -101,11 +108,11 @@ export async function createUserCard(object){
     
     // Getting the name of the company by the company id
     const id = object.company_id
-    // const company = await getCompanyById(id)
+    const company = await getCompanyById(id)
     
     // Assigning values to the HTML elements
     h1.innerHTML = object.name
-    // description.innerHTML = company.name
+    description.innerHTML = company.name
     editUserImg.src = '../../images/editButon-Image.svg'
     excludeUserImg.src = '../../images/deleteButon-Image.svg'
 
@@ -125,14 +132,63 @@ export function renderUser(array){
     cards.innerHTML = ''
 
     array.forEach(async (element) => {
-        const card = await createUserCard(element)
-        cards.append(card)
+        if(element.company_id !== null){
+            const card = await createUserCard(element)
+            cards.append(card)
+        }
     })
 }
 
-// const openButton = document.querySelectorAll('.card__buttons--seeDepartment')
-// console.log(openButton)
-// openButton.addEventListener('click', (event) => {
-//     event.preventDefault()
-//     alert('its ok')
-// })
+// We are going to create a function that create the card of the user to be rendered on the seeDepartment
+// modal
+export async function createModalUserCard(object){
+    // We are going to create the HTML elements
+    const card = document.createElement('div')
+    const h1 = document.createElement('h1')
+    const p = document.createElement('p')
+    const button = document.createElement('button')
+
+    // Assigning classes and IDs to the HTML elements
+    card.classList = 'seeDepartment__employess-card'
+    h1.classList = 'card__employee--name'
+    p.classList = 'card__employee--Companyname'
+    button.classList = 'card__employee--button'
+    button.dataset.employeeId = object.id
+
+    const company = await getCompanyById(object.company_id)
+
+    // Assigning values to the HTML elements
+    h1.innerHTML = object.name
+    p.innerHTML = company.name
+    button.innerHTML = 'Desligar'
+
+    // Establishing the hierarchy between the elements
+    card.append(h1, p, button)
+    
+    return card
+}
+
+// We are going to create a function that render the cards of the department
+export async function renderModalUser(array){
+    const cards = document.querySelector('.seeDepartment__employess')
+    cards.innerHTML = ''
+    const departmentId = localStorage.getItem("@empresas:departmentId")
+
+    const departmentName = document.querySelector('.seeDepartment__h2')
+    const departmentDescription = document.querySelector('.seeDepartment__h3')
+    const departmentCompany = document.querySelector('.seeDepartment__p')
+
+    const filteredDepartment = allDepartments.filter((department) => department.id === departmentId)
+    const company = await getCompanyById(filteredDepartment[0].company_id)
+    
+    departmentName.innerHTML = filteredDepartment[0].name 
+    departmentDescription.innerHTML = filteredDepartment[0].description
+    departmentCompany.innerHTML = company.name 
+    
+    array.forEach(async (element) => {
+        if(element.department_id === departmentId){
+            const card = await createModalUserCard(element)
+            cards.append(card)
+        }
+    })
+}
