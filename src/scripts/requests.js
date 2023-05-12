@@ -253,7 +253,8 @@ export async function fireEmployee(employeeId){
     return firedEmployee
 }
 
-
+// We are going to create a function that recieves an object with updated departments 
+// descriptions and update it
 export async function updateDepartment(departmentBody, departmentId){
     const departmentUpdated = await fetch(`${baseUrl}/departments/update/${departmentId}`, {
         method: 'PATCH',
@@ -270,4 +271,23 @@ export async function updateDepartment(departmentBody, departmentId){
     })
 
     return departmentUpdated
+}
+
+// We are going to create a function that recieves an object with updated departments 
+// descriptions and update it
+export async function removeDepartment(departmentId){
+    const departmentRemoved = await fetch(`${baseUrl}/departments/delete/${departmentId}`, {
+        method: 'DELETE',
+        headers: requestHeaders
+    })
+    .then(async (res) => {
+        if(res.ok){
+            return res.json()
+        } else{
+            const response = await res.json()
+            console.log(response.message)
+        }
+    })
+
+    return departmentRemoved
 }
