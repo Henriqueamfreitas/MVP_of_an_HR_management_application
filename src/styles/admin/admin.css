@@ -1,0 +1,191 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid grey;
+    padding: 1rem 7.5rem 1rem 8.75rem;
+}
+
+/* HEADER__LOGO */
+.header__logo{
+    display: flex;
+    align-items: center;
+}
+
+.header__logo--symbol{
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: blue;
+    margin-right: .9375rem;
+}
+
+/* .header__logo--name{} */
+
+.header__buttons--logout{
+    padding: .8125rem 2.3125rem .8125rem 2.25rem;
+    color: blue;
+    border: .0625rem solid blue;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+
+
+/* SELECT */
+.select__container{
+    display: flex;
+    justify-content: flex-end;
+    padding: 1.5625rem 7.5rem 1.5625rem 0rem;
+}
+
+.select{
+    padding: .5625rem 0rem .5625rem 1.5rem;
+}
+
+/* .select__option{} */
+
+
+
+/* DEPARTMENT */
+.department{
+    display: flex;
+    flex-direction: column;
+    padding: 0rem 7.5rem 3.3125rem 8.75rem;
+}
+
+.department__top{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.4744rem;
+}
+
+/* .department__top--h2{} */
+
+.department__top--button{
+    padding: .8125rem 2.375rem .875rem 2.375rem;
+    cursor: pointer;
+}
+
+.department__cards{
+    border: 1px solid rgb(207, 207, 207);
+    padding: 3rem 3.5rem 1.875rem 3.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 5.75rem;
+    row-gap: 2.6875rem;
+    /* height: 24.0625rem; */
+}
+
+/* FEITO NO RENDER */
+.department__cards--card{
+    border: 1px solid rgb(207, 207, 207);
+    padding: 1.125rem 2.31rem 2.8906rem 1.8125rem;
+    display: flex;
+    width: 38.3%;
+    justify-content: space-between;
+}
+
+/* .card__descriptions{} */
+
+.card__descriptions--h1{
+    margin-bottom: .5625rem;
+}
+
+.card__descriptions--description{
+    margin-bottom: .625rem;
+}
+
+/* .card__descriptions--companyName{} */
+
+.card__buttons{
+    display: flex;
+    flex-direction: column;
+}
+
+.card__buttons--seeDepartment{
+    margin-bottom: 1.5813rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* .seeDepartment__img{} */
+
+.card__buttons--editDepartment{
+    margin-bottom: 1.4219rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* .editDepartment__img{} */
+
+.card__buttons--excludeDepartment{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* .excludeDepartment__img{} */
+
+
+
+/* USERS */
+.users{
+    display: flex;
+    flex-direction: column;
+    padding: 0rem 7.5rem 0rem 8.75rem;
+}
+
+.users__h2{
+    margin-bottom: 1rem;
+}
+
+.users__cards{
+    border: 1px solid rgb(207, 207, 207);
+    padding: 3rem 3.5rem 1.875rem 3.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 5.75rem;
+    row-gap: 2.6875rem;
+    /* height: 24.0625rem; */
+}
+
+/* CRIADO NO RENDER */
+.department__cards--card{
+    border: 1px solid rgb(207, 207, 207);
+    padding: 1.125rem 2.31rem 2.8906rem 1.8125rem;
+    display: flex;
+    width: 38.3%;
+    justify-content: space-between;
+}
+
+/* .card__descriptions{} */
+
+.card__descriptions--h1{
+    margin-bottom: .6875rem;
+}
+
+/* .card__descriptions--description{} */
+
+.card__buttons{
+    display: flex;
+    flex-direction: column;
+}
+
+.card__buttons--editUser{
+    margin-bottom: 1.4219rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* .card__buttons--editUserImg{} */
+
+.card__buttons--excludeUser{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* .card__buttons--excludeUserImg{} */

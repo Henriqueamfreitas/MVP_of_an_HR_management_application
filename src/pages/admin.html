@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS -->
     <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="../styles/globalStyles.css">
+    <link rel="stylesheet" href="../styles/admin/admin.css">
         
     <!-- JS -->
     <script src="../scripts/admin.js" defer type="module"></script>
@@ -21,9 +23,11 @@
         <button class="header__buttons--logout">Logout</button>
     </header>
     
-    <select class="select" name="select" id="select">
-        <option class="select__option" value="">Selecionar empresa</option>
-    </select>
+    <div class="select__container">
+        <select class="select" name="select" id="select">
+            <option class="select__option" value="">Selecionar empresa</option>
+        </select>
+    </div>
 
     <section class="department">
         <div class="department__top">
