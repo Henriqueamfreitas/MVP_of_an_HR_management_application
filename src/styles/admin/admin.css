@@ -40,6 +40,8 @@
 
 .select{
     padding: .5625rem 0rem .5625rem 1.5rem;
+    background-color: blue;
+    color: white;
 }
 
 /* .select__option{} */
@@ -64,6 +66,9 @@
 .department__top--button{
     padding: .8125rem 2.375rem .875rem 2.375rem;
     cursor: pointer;
+    color: white;
+    border: none;
+    background-color: blue;
 }
 
 .department__cards{

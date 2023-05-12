@@ -6,7 +6,7 @@ const allEmployees = await getAllEmployees()
 const allCompanies = await getAllCompanies()
 const allUnemployed = await getAllUnemployed()
 // console.log(allDepartments)
-console.log(allEmployees)
+// console.log(allEmployees)
 // console.log(allCompanies)
 
 

@@ -1,0 +1,35 @@
+/* CREATE DEPARTMENT MODAL */
+.createDepartment__container{
+    padding: 1.355rem 1.48rem 2.8125rem 2.6875rem;
+}
+
+.createDepartment__form{
+    display: flex;
+    flex-direction: column;
+    padding: 0rem;
+}
+
+.createDepartment__topButtons{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.createDepartment__form--closeButton{
+    width: 1.1019rem;
+    height: 1.1019rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.createDepartment__form--h2{
+    margin-bottom: 1.25rem;
+}
+
+.createDepartment__form--input{}
+
+.createDepartment__form--select{}
+
+.form__select--option{}
+
+.createDepartment__form--createButton{}
