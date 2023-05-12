@@ -1,5 +1,5 @@
 import { getAllDepartments, getCompanyById, getAllEmployees, fireEmployee } from './requests.js'
-import { handleSeeDepartmentModal, handleUpdateDepartmentModal, handleRemoveDepartmentModal } from './admin.js'
+import { handleSeeDepartmentModal, handleUpdateDepartmentModal, handleRemoveDepartmentModal, handleUpdateEmployeeModal } from './admin.js'
 
 const allDepartments = await getAllDepartments()
 // console.log(allDepartments)
@@ -105,8 +105,13 @@ export async function createUserCard(object){
     cardButtons.classList = 'card__buttons'
     editUser.classList = 'card__buttons--editUser'
     editUser.dataset.userId = object.id 
+    editUserImg.classList = 'card__buttons--editUserImg'
+    editUserImg.dataset.userId = object.id 
+
     excludeUser.classList = 'card__buttons--excludeUser'
     excludeUser.dataset.userId = object.id 
+    excludeUserImg.classList = 'card__buttons--excludeUserImg'
+    excludeUserImg.dataset.userId = object.id 
     
     // Getting the name of the company by the company id
     const id = object.company_id
@@ -129,7 +134,7 @@ export async function createUserCard(object){
 }
 
 // We are going to create a function that render the cards of the department
-export function renderUser(array){
+export async function renderUser(array){
     const cards = document.querySelector('.users__cards')
     cards.innerHTML = ''
 
@@ -138,6 +143,7 @@ export function renderUser(array){
             const card = await createUserCard(element)
             cards.append(card)
         }
+        handleUpdateEmployeeModal()
     })
 }
 

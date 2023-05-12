@@ -1,12 +1,12 @@
-import { getAllDepartments, getCompanyById, getAllEmployees, getAllCompanies, createNewDepartment, getAllUnemployed, hireEmployee, fireEmployee, updateDepartment, removeDepartment } from './requests.js'
+import { getAllDepartments, getCompanyById, getAllEmployees, getAllCompanies, createNewDepartment, getAllUnemployed, hireEmployee, fireEmployee, updateDepartment, removeDepartment, updateEmployee } from './requests.js'
 import {  renderDepartment, renderUser, renderModalUser } from './render.js'
 
 const allDepartments = await getAllDepartments()
 const allEmployees = await getAllEmployees()
 const allCompanies = await getAllCompanies()
 const allUnemployed = await getAllUnemployed()
-console.log(allDepartments)
-// console.log(allEmployees)
+// console.log(allDepartments)
+console.log(allEmployees)
 // console.log(allCompanies)
 
 
@@ -271,7 +271,6 @@ export function handleRemoveDepartmentModal(){
     const h2 = document.querySelector('.deleteDepartment__h2')
     const closeButton = document.querySelector('.deleteDepartment__closeButton')
     const deleteButton = document.querySelector('.deleteDepartment__deleteButton')
-
     
     openButtons.forEach((button) => {
         button.addEventListener('click', (event) => {
@@ -294,6 +293,51 @@ export function handleRemoveDepartmentModal(){
         modal.close()
         location.reload()
     })
+}
+
+// We are going to create a function that handles the update department modal
+export function handleUpdateEmployeeModal(){
+    const modal = document.querySelector('.updateEmployee__container')
+    const openButtons = document.querySelectorAll('.card__buttons--editUser')
+    const closeButton = document.querySelector('.updateEmployee__closeButton')
+    const inputs = document.querySelectorAll('.updateEmployee__input')
+    const saveButton = document.querySelector('.updateEmployee__deleteButton')
+
+    openButtons.forEach((button) => {
+        button.addEventListener('click', (event) => {
+            modal.showModal()
+            
+            const id = event.target.dataset.userId
+            localStorage.setItem("@empresas:employeeId", id)
+            
+            const filteredEmployee = allEmployees.filter((employee) => employee.id === id)
+            inputs[0].value = filteredEmployee[0].name
+            inputs[1].value = filteredEmployee[0].email
+            
+            closeModal(closeButton, modal)
+        })
+    })
+    saveButton.addEventListener('click', async(event) => {
+        const employeeId = localStorage.getItem("@empresas:employeeId")
+        let employeeBody = {}
+        let count = 0
+        inputs.forEach((input) => {
+            if(input === ''){
+                count+=1
+            }
+            employeeBody[input.name] = input.value
+        })
+
+        if(count !== 0){
+            count = 0
+            alert('Por favor, preencha todos os campos')
+        } else{
+            await updateEmployee(employeeBody, employeeId)
+            modal.close()
+            location.reload()
+        }
+    })
+
 }
 
 // We are going to create a function that closes any modal
