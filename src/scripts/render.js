@@ -1,5 +1,5 @@
 import { getAllDepartments, getCompanyById, getAllEmployees, fireEmployee } from './requests.js'
-import { handleSeeDepartmentModal, handleUpdateDepartmentModal, handleRemoveDepartmentModal, handleUpdateEmployeeModal } from './admin.js'
+import { handleSeeDepartmentModal, handleUpdateDepartmentModal, handleRemoveDepartmentModal, handleUpdateEmployeeModal, handleDeleteEmployeeModal } from './admin.js'
 
 const allDepartments = await getAllDepartments()
 // console.log(allDepartments)
@@ -144,6 +144,7 @@ export async function renderUser(array){
             cards.append(card)
         }
         handleUpdateEmployeeModal()
+        handleDeleteEmployeeModal()
     })
 }
 

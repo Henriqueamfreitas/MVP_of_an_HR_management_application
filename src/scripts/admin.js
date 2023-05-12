@@ -1,4 +1,4 @@
-import { getAllDepartments, getCompanyById, getAllEmployees, getAllCompanies, createNewDepartment, getAllUnemployed, hireEmployee, fireEmployee, updateDepartment, removeDepartment, updateEmployee } from './requests.js'
+import { getAllDepartments, getCompanyById, getAllEmployees, getAllCompanies, createNewDepartment, getAllUnemployed, hireEmployee, fireEmployee, updateDepartment, removeDepartment, updateEmployee, removeEmployee } from './requests.js'
 import {  renderDepartment, renderUser, renderModalUser } from './render.js'
 
 const allDepartments = await getAllDepartments()
@@ -295,7 +295,7 @@ export function handleRemoveDepartmentModal(){
     })
 }
 
-// We are going to create a function that handles the update department modal
+// We are going to create a function that handles the update Employee modal
 export function handleUpdateEmployeeModal(){
     const modal = document.querySelector('.updateEmployee__container')
     const openButtons = document.querySelectorAll('.card__buttons--editUser')
@@ -336,6 +336,36 @@ export function handleUpdateEmployeeModal(){
             modal.close()
             location.reload()
         }
+    })
+
+}
+
+// We are going to create a function that handles the delete Employee modal
+export function handleDeleteEmployeeModal(){
+    const modal = document.querySelector('.deleteEmployee__container')
+    const openButtons = document.querySelectorAll('.card__buttons--excludeUser')
+    const closeButton = document.querySelector('.deleteEmployee__closeButton')
+    const deleteButton = document.querySelector('.deleteEmployee__deleteButton')
+    const h2 = document.querySelector('.deleteEmployee__h2')
+    
+    openButtons.forEach((button) => {
+        button.addEventListener('click', (event) => {
+            modal.showModal()
+            
+            
+            const id = event.target.dataset.userId
+            localStorage.setItem("@empresas:employeeId", id)
+            const filteredEmployee = allEmployees.filter((employee) => employee.id === id)
+            h2.innerHTML = `Realmente deseja remover o usuário ${filteredEmployee[0].name} ?`
+                        
+            closeModal(closeButton, modal)
+        })
+    })
+    deleteButton.addEventListener('click', async (event) => {
+        const employeeId = localStorage.getItem("@empresas:employeeId")
+            await removeEmployee(employeeId)
+            modal.close()
+            location.reload()
     })
 
 }
