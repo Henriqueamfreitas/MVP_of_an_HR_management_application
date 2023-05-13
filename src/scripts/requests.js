@@ -329,4 +329,38 @@ export async function removeEmployee(employeeId){
     return employeeRemoved
 }
 
+// We are going to create a function that recieves the company Id and returns all the departments in it
+export async function readDepartmentsByCompany(companyId){
+    const departments = await fetch(`${baseUrl}/departments/readByCompany/${companyId}`, {
+        method: 'GET',
+        headers: requestHeaders
+    })
+    .then(async (res) => {
+        if(res.ok){
+            return res.json()
+        } else{
+            const response = await res.json()
+            console.log(response.message)
+        }
+    })
 
+    return departments
+}
+
+// We are going to create a function that recieves the company Id and returns all the employees in it
+export async function readEmployeesByCompany(companyId){
+    const employees = await fetch(`${baseUrl}/companies/readById/${companyId}`, {
+        method: 'GET',
+        headers: requestHeaders
+    })
+    .then(async (res) => {
+        if(res.ok){
+            return res.json()
+        } else{
+            const response = await res.json()
+            console.log(response.message)
+        }
+    })
+
+    return employees
+}

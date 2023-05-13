@@ -1,4 +1,4 @@
-import { getAllDepartments, getCompanyById, getAllEmployees, getAllCompanies, createNewDepartment, getAllUnemployed, hireEmployee, fireEmployee, updateDepartment, removeDepartment, updateEmployee, removeEmployee } from './requests.js'
+import { getAllDepartments, getCompanyById, getAllEmployees, getAllCompanies, createNewDepartment, getAllUnemployed, hireEmployee, fireEmployee, updateDepartment, removeDepartment, updateEmployee, removeEmployee, readDepartmentsByCompany } from './requests.js'
 import {  renderDepartment, renderUser, renderModalUser } from './render.js'
 
 const allDepartments = await getAllDepartments()
@@ -380,6 +380,7 @@ function closeModal(button, modal){
     })
 }
 
+// We are going to create a function that add text if there are departments in the company
 async function addAndRemoveText(){
     const textNoDepartments = document.querySelector('.cards__noDepartments')
     const companyId = localStorage.getItem("@empresas:company_id")
@@ -391,14 +392,11 @@ async function addAndRemoveText(){
     }
 
     let classStyle = 'hidden'
-    const departmentCards = document.querySelector('.department__cards')
-    // IDEIA: PEGAR FUNÇÃO E VER SE NÃO TEM NENHUM DEPARTAMENTO. SE NAO TIVER, MOSTRAMOS!
-    const test =document.querySelectorAll('.department__cards--card')
-
-    if(test.innerHTML = ''){
-        console.log('its empty')
+    const departments = await readDepartmentsByCompany(companyId)
+    if(departments[0] === undefined){
+        textNoDepartments.classList.remove(classStyle)
     } else{
-        console.log('there is at least one HTML element')
+        textNoDepartments.classList.add(classStyle)
     }
 }
 
