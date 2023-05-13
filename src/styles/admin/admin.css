@@ -36,12 +36,14 @@
     display: flex;
     justify-content: flex-end;
     padding: 1.5625rem 7.5rem 1.5625rem 0rem;
+    border: none;
 }
 
 .select{
     padding: .5625rem 0rem .5625rem 1.5rem;
     background-color: blue;
     color: white;
+    border: none;
 }
 
 /* .select__option{} */
