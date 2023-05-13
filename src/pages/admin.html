@@ -36,6 +36,7 @@
             <button class="department__top--button">+ Criar</button>
         </div>
         <div class="department__cards"></div>
+        <p class="cards__noDepartments hidden"></p>
     </section>
 
     <dialog class="createDepartment__container">
@@ -59,47 +60,61 @@
     </section>
 
     <dialog class="seeDepartment__container">
-        <div class="seeDepartment__topButtons">
-            <button class="seeDepartment__closeButton">x</button>
+        <div class="seeDepartment__controller">
+            <div class="seeDepartment__topButtons">
+                <button class="seeDepartment__closeButton">x</button>
+            </div>
+            <h2 class="seeDepartment__h2"></h2>
+            <h3 class="seeDepartment__h3"></h3>
+            <p class="seeDepartment__p"></p>
+            <select class="seeDepartment__select" name="seeDepartment__select" id="seeDepartment__select">
+            </select>
+            <button class="seeDepartment__hireButton">Contratar</button>
+            <div class="seeDepartment__employess"></div>
         </div>
-        <h2 class="seeDepartment__h2"></h2>
-        <h3 class="seeDepartment__h3"></h3>
-        <p class="seeDepartment__p"></p>
-        <select class="seeDepartment__select" name="seeDepartment__select" id="seeDepartment__select">
-        </select>
-        <button class="seeDepartment__hireButton">Contratar</button>
-        <div class="seeDepartment__employess"></div>
     </dialog>
 
     <dialog class="updateDepartment__container">
-        <div class="updateDepartment__topButtons">
-            <button class="updateDepartment__closeButton">x</button>
+        <div class="updateDepartment__controller">
+            <div class="updateDepartment__topButtons">
+                <button class="updateDepartment__closeButton">x</button>
+            </div>
+            <h2 class="updateDepartment__h2">Editar Departamento</h2>
+            <input class="updateDepartment__input" name="description"></input>
+            <button class="updateDepartment__saveButton">Salvar</button>
         </div>
-        <h2 class="updateDepartment__h2">Editar Departamento</h2>
-        <input class="updateDepartment__input" name="description"></input>
-        <button class="updateDepartment__saveButton">Salvar</button>
     </dialog>
 
     <dialog class="deleteDepartment__container">
-        <div class="deleteDepartment__topButtons">
-            <button class="deleteDepartment__closeButton">x</button>
-        </div>        
-        <h2 class="deleteDepartment__h2"></h2>
-        <button class="deleteDepartment__deleteButton">Remover</button>
+        <div class="deleteDepartment__controller">
+            <div class="deleteDepartment__topButtons">
+                <button class="deleteDepartment__closeButton">x</button>
+            </div>        
+            <h2 class="deleteDepartment__h2"></h2>
+            <button class="deleteDepartment__deleteButton">Remover</button>
+        </div>
     </dialog>
 
     <dialog class="updateEmployee__container">
-        <button class="updateEmployee__closeButton">x</button>
-        <h2 class="updateEmployee__h2">Editar Usuário</h2>
-        <input class="updateEmployee__input" name="name"></input>
-        <input class="updateEmployee__input" name="email"></input>
-        <button class="updateEmployee__deleteButton">Salvar</button>
+        <div class="updateEmployee__controller">
+            <div class="updateEmployee__topButtons">
+                <button class="updateEmployee__closeButton">x</button>
+            </div>        
+            <h2 class="updateEmployee__h2">Editar Usuário</h2>
+            <input class="updateEmployee__input" name="name"></input>
+            <input class="updateEmployee__input" name="email"></input>
+            <button class="updateEmployee__deleteButton">Salvar</button>
+        </div>
     </dialog>
 
     <dialog class="deleteEmployee__container">
-        <button class="deleteEmployee__closeButton">x</button>
-        <h2 class="deleteEmployee__h2"></h2>
-        <button class="deleteEmployee__deleteButton">Remover</button>
+        <div class="deleteEmployee__controller">
+            <div class="deleteEmployee__topButtons">
+                <button class="deleteEmployee__closeButton">x</button>
+            </div>        
+            <h2 class="deleteEmployee__h2"></h2>
+            <button class="deleteEmployee__deleteButton">Remover</button>
+        </div>
     </dialog>
 
 </body>

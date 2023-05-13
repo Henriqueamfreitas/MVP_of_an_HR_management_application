@@ -59,7 +59,7 @@ dialog{
 
 
 /* SEE DEPARTMENT MODAL */
-.seeDepartment__container{
+.seeDepartment__controller{
     padding: 1.9175rem 1.98rem 4.3125rem 2.75rem;
 }
 
@@ -141,7 +141,7 @@ dialog{
 
 
 /* UPDATE DEPARTMENT MODAL */
-.updateDepartment__container{
+.updateDepartment__controller{
     padding: 1.355rem 1.48rem 2.625rem 2.625rem;
     display: flex;
     flex-direction: column;
@@ -186,7 +186,7 @@ dialog{
 
 
 /* DELETE DEPARTMENT MODAL */
-.deleteDepartment__container{
+.deleteDepartment__controller{
     padding: 1.355rem 1.4175rem 4.125rem 9.75rem;
     display: flex;
     flex-direction: column;
@@ -224,4 +224,95 @@ dialog{
     border: none;
     color: white;
     background-color: orangered;
+}
+
+
+
+/* UPDATE EMPLOYEE MODAL */
+.updateEmployee__controller{
+    padding: 1.355rem 1.48rem 2.625rem 2.75rem;
+    display: flex;
+    flex-direction: column;
+    width: 31.625rem;
+}
+
+.updateEmployee__topButtons{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.updateEmployee__closeButton{
+    width: 1.1019rem;
+    height: 1.1019rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.updateEmployee__h2{
+    margin-bottom: 1.25rem;
+}
+
+.updateEmployee__input{
+    margin-bottom: 1rem;
+    padding: 1.0625rem 0rem .8125rem 1.0625rem;
+    border: solid 1px grey;
+    color: grey;
+    margin-right: 1.4763rem;
+}
+
+.updateEmployee__deleteButton{
+    margin-top: 1.25rem;
+    cursor: pointer;
+    color: white;
+    background-color: green;
+    margin-right: 1.4763rem;
+    border: none;
+    padding: .73rem 0rem .9113rem 0rem;
+}
+
+
+
+
+/* DELETE EMPLOYEE MODAL */
+.deleteEmployee__controller{
+    padding: 1.355rem 1.4175rem 3.5rem 9.75rem;
+    display: flex;
+    flex-direction: column;
+    width: 45.8125rem;
+}
+
+.deleteEmployee__topButtons{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.deleteEmployee__closeButton{
+    width: 1.1019rem;
+    height: 1.1019rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    margin-bottom: 1.9175rem;
+}
+
+.deleteEmployee__h2{
+    text-align: center;
+    margin-right: 8.395rem;
+    margin-bottom: 2.125rem;
+}
+
+.deleteEmployee__deleteButton{
+    margin-right: 8.395rem;
+    cursor: pointer;
+    color: white;
+    background-color: orangered;
+    border: none;
+    padding: .73rem 0rem .9113rem 0rem;
 }

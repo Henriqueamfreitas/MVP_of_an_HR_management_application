@@ -53,9 +53,11 @@ async function handleSelect(){
     const employeeContainer = document.querySelector('.users__cards')
     
     select.addEventListener('click', () => {
-        const value = select.value        
+        const value = select.value 
+        localStorage.setItem("@empresas:company_id", value)       
         const filteredDepartment = allDepartments.filter((department) => department.company_id === value)
         const filteredEmployee = allEmployees.filter((employee) => employee.company_id === value)
+        addAndRemoveText()
 
         if(value === ''){
             departmentContainer.innerHTML = ''
@@ -378,6 +380,27 @@ function closeModal(button, modal){
     })
 }
 
+async function addAndRemoveText(){
+    const textNoDepartments = document.querySelector('.cards__noDepartments')
+    const companyId = localStorage.getItem("@empresas:company_id")
+    if(companyId === ''){
+        textNoDepartments.innerHTML = `Nenhuma empresa possui departamentos cadastrados`
+    } else{
+        const company = await getCompanyById(companyId)
+        textNoDepartments.innerHTML = `Empresa ${company.name} não possui departamentos cadastrados`
+    }
+
+    let classStyle = 'hidden'
+    const departmentCards = document.querySelector('.department__cards')
+    // IDEIA: PEGAR FUNÇÃO E VER SE NÃO TEM NENHUM DEPARTAMENTO. SE NAO TIVER, MOSTRAMOS!
+    const test =document.querySelectorAll('.department__cards--card')
+
+    if(test.innerHTML = ''){
+        console.log('its empty')
+    } else{
+        console.log('there is at least one HTML element')
+    }
+}
 
 
 handleCreateDepartmentModal()
