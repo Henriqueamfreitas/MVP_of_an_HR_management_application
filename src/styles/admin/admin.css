@@ -82,9 +82,10 @@
     padding: 3rem 3.5rem 1.875rem 3.5rem;
     display: flex;
     flex-wrap: wrap;
-    column-gap: 5.75rem;
+    column-gap: 6.875rem;
     row-gap: 2.6875rem;
-    /* height: 24.0625rem; */
+    height: 24.0625rem;
+    overflow-y: scroll;
 }
 
 /* FEITO NO RENDER */
@@ -155,12 +156,13 @@
 
 .users__cards{
     border: 1px solid rgb(207, 207, 207);
-    padding: 3rem 3.5rem 1.875rem 3.5rem;
     display: flex;
     flex-wrap: wrap;
-    column-gap: 5.75rem;
+    column-gap: 6.875rem;
     row-gap: 2.6875rem;
-    /* height: 24.0625rem; */
+    height: 24.0625rem;
+    overflow-y: scroll;
+    padding: 3rem 2.875rem 1.875rem 3.5rem;
 }
 
 /* CRIADO NO RENDER */

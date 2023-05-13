@@ -61,6 +61,7 @@ dialog{
 /* SEE DEPARTMENT MODAL */
 .seeDepartment__controller{
     padding: 1.9175rem 1.98rem 4.3125rem 2.75rem;
+    width: 857px;
 }
 
 .seeDepartment__topButtons{
@@ -91,10 +92,16 @@ dialog{
     margin-bottom: 1.125rem;
 }
 
+.seeDepartment__hire{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
 .seeDepartment__select{
     padding: 1.0625rem 0rem .8125rem 1.0625rem;
-    width: 53.5625rem;
-    margin-bottom: 1rem;
+    width: 665px;
+    margin-right: 19px;
 }
 
 .seeDepartment__hireButton{
@@ -108,6 +115,9 @@ dialog{
 .seeDepartment__employess{
     background-color: rgb(231, 231, 231);
     padding: 2.6875rem 2.0625rem 3.1875rem 2.0625rem;
+    display: flex;
+    gap: 1.75rem;
+    overflow-x: scroll;
 }
 
 .seeDepartment__employess-card{

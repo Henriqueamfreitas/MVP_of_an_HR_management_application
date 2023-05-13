@@ -40,11 +40,17 @@ body{
     padding: .8125rem 2.8125rem .8287rem 2.8125rem;
     cursor: pointer;
     margin-right: .6875rem;
+    border: 1px solid blue;
+    background-color: transparent;
+    color: blue;
 }
 
 .header__buttons--register{
     padding: .73rem 1.75rem .9113rem 1.6875rem;
     cursor: pointer;
+    border: none;
+    background-color: blue;
+    color: white;
 }
 
 
@@ -79,7 +85,9 @@ body{
 .companies__container{
     background-color: rgb(226, 224, 224);
     padding: 1.6875rem 1.75rem .625rem 2.0625rem;
-    overflow-y: hidden;
+    height: 810px;
+    margin-bottom: 2.9375rem;
+    overflow-y: scroll;
 }
 
 .container__h2{

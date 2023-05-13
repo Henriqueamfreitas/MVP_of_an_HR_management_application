@@ -13,7 +13,7 @@ function redirectPage(button, path){
 
 
 const userInformation = await getLoggedUserInformation()
-console.log(userInformation)
+
 async function createUserCard(object){
     const div = document.createElement('div')
     const h2 = document.createElement('h2')
@@ -41,6 +41,8 @@ async function renderUserCard(){
 
     if(userInformation.company_id === null){
         const p = document.createElement('p')
+        let classStyle = 'hidden'
+        employees.style.backgroundColor = 'white'
 
         p.innerHTML = 'Você ainda não foi contratado'
 
