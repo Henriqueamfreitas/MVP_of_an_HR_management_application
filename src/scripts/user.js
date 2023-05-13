@@ -13,6 +13,7 @@ function redirectPage(button, path){
 
 
 const userInformation = await getLoggedUserInformation()
+console.log(userInformation)
 async function createUserCard(object){
     const div = document.createElement('div')
     const h2 = document.createElement('h2')
@@ -27,9 +28,7 @@ async function createUserCard(object){
     return div
 }
 
-const company = await readEmployeesByCompany(userInformation.company_id)
-const employees = await company.employees
-async function renderUserCard(array){
+async function renderUserCard(){
     // Getting the HTML elements from the document
     const userName = document.querySelector('.userInformation__container--h2')
     const email = document.querySelector('.userInformation__container--p')
@@ -49,6 +48,9 @@ async function renderUserCard(array){
 
         controller.append(p)
     } else{
+        const companyEmployee = await readEmployeesByCompany(userInformation.company_id)
+        const employeesArray = await companyEmployee.employees
+
         const company = await getCompanyById(userInformation.company_id)
         const departments = company.departments
         const filteredDepartment = departments.filter((department) => department.id === userInformation.department_id)
@@ -57,9 +59,12 @@ async function renderUserCard(array){
 
         // Assgining value to the HTML elements
         companyDescription.innerHTML = `${company.name} - ${filteredDepartment[0].name}`
+        companyDescription.classList = 'company__employees--companyDescription'
+
+        const employees = document.querySelector('.company__employees')
         employees.append(companyDescription)
 
-        array.forEach(async(element) => {
+        employeesArray.forEach(async(element) => {
             const card = await createUserCard(element)
             employees.append(card)
         })
@@ -67,5 +72,5 @@ async function renderUserCard(array){
 }
 
 
-renderUserCard(employees)
+renderUserCard()
 redirectPage(logoutButton, loginPath)

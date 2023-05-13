@@ -1,0 +1,95 @@
+/* HEADER */
+.header{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid grey;
+    padding: 1rem 8.75rem 1rem 8.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.header__logo{
+    display: flex;
+    align-items: center;
+}
+
+.header__logo--symbol{
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: blue;
+    margin-right: .9375rem;
+}
+
+/* .header__logo--name{} */
+
+.header__buttons--logout{
+    padding: .8125rem 2.3125rem .8125rem 2.25rem;
+    color: blue;
+    border: .0625rem solid blue;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+
+/* MAIN */
+.main{
+    padding-right: 8.75rem;
+    padding-left: 8.75rem;
+    padding-bottom: 243px;
+}
+
+.userInformation__container{
+    padding: 1rem 0rem 3.0625rem 1.9375rem;
+    border: solid 1px rgb(218, 217, 217);
+    margin-bottom: 2.4375rem;
+}
+
+.userInformation__container--h2{
+    margin-bottom: .125rem;
+}
+
+/* .userInformation__container--p{} */
+
+.company__container{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+/* HIRED EMPLOYEE */
+.company__employees{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 4.5625rem;
+    row-gap: 1.25rem;
+    justify-content: center;
+    background-color: rgb(223, 221, 221);
+    padding-bottom: 1.1875rem;
+}
+
+.company__employees--companyDescription{
+    background-color: blue;
+    color: white;
+    text-align: center;
+    padding-top: 1.25rem;
+    padding-bottom: 1.1875rem;
+    margin-bottom: 2.4375rem;
+    width: 100%;
+}
+
+.company__employees--card{
+    border: 1px solid blue;
+    padding-top: .9375rem;
+    padding-left: 1.1875rem;
+    width: 19.875rem;
+    height: 5.9375rem;
+}
+
+/* .employees__card--h2{} */
+
+
+/* UNEMPLOYED EMPLOYEE */
+.company__controller--pUnemployeed{
+    background-color: red;
+}
