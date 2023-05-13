@@ -12,35 +12,7 @@ function redirectPage(button, path){
 }
 
 
-
 const userInformation = await getLoggedUserInformation()
-// const categoryInformation = await getCategoryInformation()
-
-async function render(){
-    const company = await getCompanyById(userInformation.company_id)
-    const departments = company.departments
-    const filteredDepartment = departments.filter((department) => department.id === userInformation.department_id)
-    
-    // Getting the HTML elements from the document
-    const userName = document.querySelector('.userInformation__container--h2')
-    const email = document.querySelector('.userInformation__container--p')
-    const companyName = document.querySelector('.company__container--name')
-    const companyDepartment = document.querySelector('.company__container--department')
-    
-    // Assgining value to the HTML elements
-    userName.innerHTML = userInformation.name
-    email.innerHTML = userInformation.email
-    companyName.innerHTML = company.name
-    companyDepartment.innerHTML = filteredDepartment[0].name
-
-
-
-
-
-}
-
-const company = await readEmployeesByCompany(userInformation.company_id)
-const employees = await company.employees
 async function createUserCard(object){
     const div = document.createElement('div')
     const h2 = document.createElement('h2')
@@ -55,32 +27,45 @@ async function createUserCard(object){
     return div
 }
 
+const company = await readEmployeesByCompany(userInformation.company_id)
+const employees = await company.employees
 async function renderUserCard(array){
-    const company = await getCompanyById(userInformation.company_id)
-    const departments = company.departments
-    const filteredDepartment = departments.filter((department) => department.id === userInformation.department_id)
-    
     // Getting the HTML elements from the document
     const userName = document.querySelector('.userInformation__container--h2')
     const email = document.querySelector('.userInformation__container--p')
-    const companyName = document.querySelector('.company__container--name')
-    const companyDepartment = document.querySelector('.company__container--department')
-    
+    const controller = document.querySelector('.company__controller')
+    const employees = document.querySelector('.company__employees')
+   
     // Assgining value to the HTML elements
     userName.innerHTML = userInformation.name
     email.innerHTML = userInformation.email
-    companyName.innerHTML = company.name
-    companyDepartment.innerHTML = filteredDepartment[0].name
 
+    if(userInformation.company_id === null){
+        const p = document.createElement('p')
 
-    const companyEmployees = document.querySelector('.company__employees')
-    array.forEach(async (element) => {
-        const card = await createUserCard(element)
-        companyEmployees.append(card)
-    })    
+        p.innerHTML = 'Você ainda não foi contratado'
+
+        p.classList = 'company__controller--pUnemployeed'
+
+        controller.append(p)
+    } else{
+        const company = await getCompanyById(userInformation.company_id)
+        const departments = company.departments
+        const filteredDepartment = departments.filter((department) => department.id === userInformation.department_id)
+
+        const companyDescription = document.createElement('p')        
+
+        // Assgining value to the HTML elements
+        companyDescription.innerHTML = `${company.name} - ${filteredDepartment[0].name}`
+        employees.append(companyDescription)
+
+        array.forEach(async(element) => {
+            const card = await createUserCard(element)
+            employees.append(card)
+        })
+    }
 }
 
 
 renderUserCard(employees)
 redirectPage(logoutButton, loginPath)
-render()
