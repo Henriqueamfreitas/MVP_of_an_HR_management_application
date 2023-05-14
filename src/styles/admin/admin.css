@@ -15,7 +15,7 @@
     width: 1rem;
     height: 1rem;
     border-radius: 50%;
-    background-color: blue;
+    background-color: var(--color-brand-3);
     margin-right: .9375rem;
 }
 
@@ -23,8 +23,8 @@
 
 .header__buttons--logout{
     padding: .8125rem 2.3125rem .8125rem 2.25rem;
-    color: blue;
-    border: .0625rem solid blue;
+    color: var(--color-brand-1);
+    border: .0625rem solid var(--color-brand-1);
     background-color: transparent;
     cursor: pointer;
 }
@@ -41,8 +41,8 @@
 
 .select{
     padding: .5625rem 0rem .5625rem 1.5rem;
-    background-color: blue;
-    color: white;
+    background-color: var(--color-brand-1);
+    color: var(--color-grey-6);
     border: none;
 }
 
@@ -72,25 +72,27 @@
 .department__top--button{
     padding: .8125rem 2.375rem .875rem 2.375rem;
     cursor: pointer;
-    color: white;
+    color: var(--color-grey-6);
     border: none;
-    background-color: blue;
+    background-color: var(--color-brand-1);
 }
 
 .department__cards{
-    border: 1px solid rgb(207, 207, 207);
     padding: 3rem 3.5rem 1.875rem 3.5rem;
     display: flex;
     flex-wrap: wrap;
-    column-gap: 6.875rem;
+    column-gap: 5.60rem;
     row-gap: 2.6875rem;
     height: 24.0625rem;
     overflow-y: scroll;
+    background-color: var(--color-grey-5);
 }
 
 /* FEITO NO RENDER */
 .department__cards--card{
-    border: 1px solid rgb(207, 207, 207);
+    background-color: var(--color-grey-6);
+    border: solid 1px;
+    border-color: var(--color-brand-1);
     padding: 1.125rem 2.31rem 2.8906rem 1.8125rem;
     display: flex;
     width: 38.3%;
@@ -155,10 +157,10 @@
 }
 
 .users__cards{
-    border: 1px solid rgb(207, 207, 207);
+    background-color: var(--color-grey-5);
     display: flex;
     flex-wrap: wrap;
-    column-gap: 6.875rem;
+    column-gap: 5.60rem;
     row-gap: 2.6875rem;
     height: 24.0625rem;
     overflow-y: scroll;
@@ -167,7 +169,7 @@
 
 /* CRIADO NO RENDER */
 .department__cards--card{
-    border: 1px solid rgb(207, 207, 207);
+    border: 1px solid var(--color-brand-1);
     padding: 1.125rem 2.31rem 2.8906rem 1.8125rem;
     display: flex;
     width: 38.3%;
