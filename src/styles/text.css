@@ -44,7 +44,7 @@
 /* Descrição do departamento(MODALvISUALIZARdEPARTAMENTO); */
 .text-7{
     font-size: var(--font-size-7);
-    font-weight: var(--font-weight-4);
+    font-weight: var(--font-weight-1);
     line-height: var(--line-height-6);
 }
 
@@ -97,4 +97,18 @@
     font-size: var(--font-size-10);
     font-weight: var(--font-weight-4);
     line-height: var(--line-height-14);
+}
+
+/* email(USERPAGE) */
+.text-15{
+    font-size: var(--font-size-6);
+    font-weight: var(--font-weight-4);
+    line-height: var(--line-height-8);
+}
+
+/* Empresa sem departamentos(ADMIN); */
+.text-16{
+    font-size: var(--font-size-7);
+    font-weight: var(--font-weight-3);
+    line-height: var(--line-height-6);
 }

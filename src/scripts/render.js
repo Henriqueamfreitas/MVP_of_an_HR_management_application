@@ -23,9 +23,9 @@ export async function createDepartmentCard(object){
     // Assigning classes and IDs to the HTML elements
     card.classList = 'department__cards--card'
     cardDescriptions.classList = 'card__descriptions'
-    h1.classList = 'card__descriptions--h1'
-    description.classList = 'card__descriptions--description'
-    companyName.classList = 'card__descriptions--companyName'
+    h1.classList = 'card__descriptions--h1 text-8'
+    description.classList = 'card__descriptions--description text-11'
+    companyName.classList = 'card__descriptions--companyName text-11'
     
     cardButtons.classList = 'card__buttons'
     seeDepartment.classList = 'card__buttons--seeDepartment'
@@ -99,8 +99,8 @@ export async function createUserCard(object){
     // Assigning classes and IDs to the HTML elements
     card.classList = 'department__cards--card'
     cardDescriptions.classList = 'card__descriptions'
-    h1.classList = 'card__descriptions--h1'
-    description.classList = 'card__descriptions--description'
+    h1.classList = 'card__descriptions--h1 text-8'
+    description.classList = 'card__descriptions--description text-11'
     
     cardButtons.classList = 'card__buttons'
     editUser.classList = 'card__buttons--editUser'
@@ -159,9 +159,9 @@ export async function createModalUserCard(object){
 
     // Assigning classes and IDs to the HTML elements
     card.classList = 'seeDepartment__employess-card'
-    h1.classList = 'card__employee--name'
-    p.classList = 'card__employee--Companyname'
-    button.classList = 'card__employee--button'
+    h1.classList = 'card__employee--name text-8'
+    p.classList = 'card__employee--Companyname text-12'
+    button.classList = 'card__employee--button text-10'
     button.dataset.employeeId = object.id
 
     const company = await getCompanyById(object.company_id)

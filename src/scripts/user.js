@@ -33,7 +33,7 @@ async function createUserCard(object){
     h2.innerHTML = object.name
     
     div.classList = 'company__employees--card'
-    h2.classList = 'employees__card--h2'
+    h2.classList = 'employees__card--h2 text-8'
     
     div.append(h2)
     
@@ -58,7 +58,7 @@ async function renderUserCard(){
 
         p.innerHTML = 'Você ainda não foi contratado'
 
-        p.classList = 'company__controller--pUnemployeed'
+        p.classList = 'company__controller--pUnemployeed text-4'
 
         controller.append(p)
     } else{
@@ -73,7 +73,7 @@ async function renderUserCard(){
 
         // Assgining value to the HTML elements
         companyDescription.innerHTML = `${company.name} - ${filteredDepartment[0].name}`
-        companyDescription.classList = 'company__employees--companyDescription'
+        companyDescription.classList = 'company__employees--companyDescription text-3'
 
         const employees = document.querySelector('.company__employees')
         employees.append(companyDescription)

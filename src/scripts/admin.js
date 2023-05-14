@@ -5,9 +5,6 @@ const allDepartments = await getAllDepartments()
 const allEmployees = await getAllEmployees()
 const allCompanies = await getAllCompanies()
 const allUnemployed = await getAllUnemployed()
-// console.log(allDepartments)
-// console.log(allEmployees)
-// console.log(allCompanies)
 
 
 function authentication(){
@@ -64,24 +61,27 @@ async function handleSelect(){
     const select = document.querySelector('.select')
     const departmentContainer = document.querySelector('.department__cards')
     const employeeContainer = document.querySelector('.users__cards')
+    const textNoDepartments = document.querySelector('.cards__noDepartments')
+
     
     select.addEventListener('click', () => {
         const value = select.value 
-        localStorage.setItem("@empresas:company_id", value)       
-        const filteredDepartment = allDepartments.filter((department) => department.company_id === value)
-        const filteredEmployee = allEmployees.filter((employee) => employee.company_id === value)
-        addAndRemoveText()
-
         if(value === ''){
+            textNoDepartments.innerHTML = ''
             departmentContainer.innerHTML = ''
             employeeContainer.innerHTML = ''
             renderDepartment(allDepartments)
             renderUser(allEmployees)
         } else{
-            departmentContainer.innerHTML = ''
-            employeeContainer.innerHTML = ''
-            renderDepartment(filteredDepartment)
-            renderUser(filteredEmployee)
+        localStorage.setItem("@empresas:company_id", value)       
+        const filteredDepartment = allDepartments.filter((department) => department.company_id === value)
+        const filteredEmployee = allEmployees.filter((employee) => employee.company_id === value)
+        addAndRemoveText()
+
+        departmentContainer.innerHTML = ''
+        employeeContainer.innerHTML = ''
+        renderDepartment(filteredDepartment)
+        renderUser(filteredEmployee)
         }
     })
 }
@@ -236,8 +236,8 @@ function handleHireEmployee(){
     
             await hireEmployee(departmentObject, employeeId)
             await renderModalUser(allEmployees)
-            location.reload()
             modal.close()
+            location.reload()
         }
     })
 }
@@ -397,19 +397,22 @@ function closeModal(button, modal){
 async function addAndRemoveText(){
     const textNoDepartments = document.querySelector('.cards__noDepartments')
     const companyId = localStorage.getItem("@empresas:company_id")
-    if(companyId === ''){
-        textNoDepartments.innerHTML = `Nenhuma empresa possui departamentos cadastrados`
-    } else{
-        const company = await getCompanyById(companyId)
-        textNoDepartments.innerHTML = `Empresa ${company.name} não possui departamentos cadastrados`
-    }
+    const select = document.querySelector('.select')
+    // console.log(select.value)
 
+    const company = await getCompanyById(companyId)
+    
     let classStyle = 'hidden'
     const departments = await readDepartmentsByCompany(companyId)
-    if(departments[0] === undefined){
+    // console.log(departments)
+    console.log(departments[0])
+
+    if((select.value !== '') && (departments[0] === undefined)){
         textNoDepartments.classList.remove(classStyle)
-    } else{
+        textNoDepartments.innerHTML = `Empresa ${company.name} não possui departamentos cadastrados`
+    } else if((departments[0] !== undefined) || (select.value === '')){
         textNoDepartments.classList.add(classStyle)
+        textNoDepartments.innerHTML = ''
     }
 }
 
