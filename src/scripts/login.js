@@ -2,7 +2,7 @@ import { validateLoginUser } from './requests.js'
 
 // We are going to edit the login and the register buttons and redirect to the login/register html page
 const homeButton = document.querySelector('.header__buttons--home')
-const homePath = '/home.html'
+const homePath = '/index.html'
 const registerPath = '/src/pages/register.html'
 const registerButton = document.querySelector('.header__buttons--register')
 const formRegisterButton = document.querySelector('.main__form--registerButton')

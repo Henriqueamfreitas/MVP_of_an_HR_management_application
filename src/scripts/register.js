@@ -3,7 +3,7 @@ import { createNewUser, validateLoginUser } from './requests.js'
 // We are going to edit the login and the register buttons and redirect to the login/register html page
 const homeButton = document.querySelector('.header__buttons--home')
 const returnButton = document.querySelector('.main__form--returnButton')
-const homePath = '/home.html'
+const homePath = '/index.html'
 const loginPath = '/src/pages/login.html'
 const loginButton = document.querySelector('.header__buttons--login')
 function redirectPage(button, path){
