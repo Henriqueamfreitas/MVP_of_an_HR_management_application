@@ -1,5 +1,17 @@
 import { getLoggedUserInformation, getCategoryInformation, getCompanyById, readEmployeesByCompany } from './requests.js'
 
+function authentication(){
+    const token = localStorage.getItem("@empresas:token") 
+    const isAdm = localStorage.getItem("@empresas:isAdm") 
+
+    if(!token){ 
+        location.replace('/index.html')
+    }
+    if(isAdm === 'true'){
+        location.replace('/index.html')
+    }
+}
+
 // We are going to edit the logout, redirect to the login html page and clear the localStorage
 const logoutButton = document.querySelector('.header__buttons--logout')
 const loginPath = '/src/pages/login.html'
@@ -76,3 +88,4 @@ async function renderUserCard(){
 
 renderUserCard()
 redirectPage(logoutButton, loginPath)
+authentication()

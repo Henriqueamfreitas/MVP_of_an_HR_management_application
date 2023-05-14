@@ -40,7 +40,11 @@ async function handleLogin(){
             const loginObject = await validateLoginUser(user)
     
             const objectStringfied = JSON.stringify(loginObject)
+            const token = JSON.stringify(loginObject.authToken)
+            const isAdm = JSON.stringify(loginObject.isAdm)
             localStorage.setItem("@empresas:loginObject", objectStringfied)
+            localStorage.setItem("@empresas:token", token)
+            localStorage.setItem("@empresas:isAdm", isAdm)
 
             if(loginObject.isAdm === true){
                 location.replace('/src/pages/admin.html')

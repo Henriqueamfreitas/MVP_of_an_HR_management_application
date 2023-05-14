@@ -26,7 +26,6 @@ async function renderSelect(){
 
 // We are going to get all the COMPANIES from the API and render them on the HTML document
 const allCompanies = await getAllCompanies()
-console.log(allCompanies)
 async function renderCompanies(array){
     // We are getting an array with all the categories from the API and assigning them to the variables allCategories
     // We are getting the 'select' from the HTML document
@@ -51,8 +50,8 @@ async function renderCompanies(array){
 
         // We are going to assign class and id to the element
         div.classList = 'container__company--div'
-        h3.classList = 'container__company--h3'
-        p.classList = 'container__company--p'
+        h3.classList = 'container__company--h3 text-8'
+        p.classList = 'container__company--p text-14'
 
         // We are going to establish the hirarchy between the elements
         container.append(div)

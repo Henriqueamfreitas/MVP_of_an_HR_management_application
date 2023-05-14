@@ -10,6 +10,19 @@ const allUnemployed = await getAllUnemployed()
 // console.log(allCompanies)
 
 
+function authentication(){
+    const token = localStorage.getItem("@empresas:token") 
+    const isAdm = localStorage.getItem("@empresas:isAdm") 
+    console.log(isAdm)
+
+    if(!token){ //se não existir, token = null, e, no if(), o null é considerado false
+        location.replace('/index.html')
+    }
+    if(isAdm === 'false'){
+        location.replace('/index.html')
+    }
+}
+
 // We are going to edit the logout, redirect to the login html page and clear the localStorage
 const logoutButton = document.querySelector('.header__buttons--logout')
 const loginPath = '/src/pages/login.html'
@@ -407,3 +420,4 @@ renderDepartment(allDepartments)
 renderUser(allEmployees)
 renderSelect()
 handleSelect()
+authentication()
