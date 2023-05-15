@@ -57,7 +57,7 @@ export async function createNewUser(userBody){
             return res.json()
         } else{
             const response = await res.json()
-            console.log(response.message)
+            alert(response.message)
         }
     })
 
@@ -78,7 +78,7 @@ export async function validateLoginUser(userBody){
             return res.json()
         } else{
             const response = await res.json()
-            console.log(response.message)
+            alert(response.message)
         }
     })
 
