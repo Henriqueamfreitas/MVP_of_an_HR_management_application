@@ -275,7 +275,7 @@ dialog{
 .updateEmployee__deleteButton{
     margin-top: 1.25rem;
     cursor: pointer;
-    color: var(--color-action-2);
+    color: var(--color-grey-6);
     background-color: var(--color-action-1);
     margin-right: 1.4763rem;
     border: none;

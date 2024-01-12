@@ -416,7 +416,7 @@ async function addAndRemoveText(){
     }
 }
 
-
+console.log(allEmployees)
 handleCreateDepartmentModal()
 redirectPage(logoutButton, loginPath)
 renderDepartment(allDepartments)

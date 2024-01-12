@@ -1,6 +1,30 @@
-// We are going to define the URL base
+export function toast(message, color) {
+    const body = document.querySelector('body');
+    const container = document.createElement('div');
+    const text = document.createElement('p');
+  
+    container.classList.add('toast__container', 'toast__add');
+    container.style.backgroundColor = color;
+  
+    text.innerText = message;
+  
+    container.appendChild(text);
+  
+    body.appendChild(container);
+  
+    setTimeout(() => {
+      container.classList.add('toast__remove');
+    }, 3000);
+  
+    setTimeout(() => {
+      body.removeChild(container);
+    }, 4990);
+}
+const green = '#22966D'
+const red = '#C96047'
+
 const baseUrl = 'http://localhost:3333'
-const stringfiedToken = JSON.parse(localStorage.getItem("@empresas:loginObject")) || ''
+const stringfiedToken = JSON.parse(localStorage.getItem('@empresas:loginObject')) || ''
 const token = stringfiedToken.authToken
 
 const requestHeaders = { 
@@ -9,7 +33,6 @@ const requestHeaders = {
 } 
 
 
-// We are going to get an array with all the CATEGORIES from the API (Alimetício, varejo ...)
 export async function getAllCategories(){
     const allCategories = await fetch(`${baseUrl}/categories/readAll`, {
         method: 'GET',
@@ -26,7 +49,6 @@ export async function getAllCategories(){
     return allCategories
 }
 
-// We are going to get an array with all the COMPANIES from the API
 export async function getAllCompanies(){
     const allCompanies = await fetch(`${baseUrl}/companies/readAll`, {
         method: 'GET',
@@ -43,8 +65,6 @@ export async function getAllCompanies(){
     return allCompanies
 }
 
-// We are going to create a function that recieves an object with name, email and password and create a 
-// new user with that characteristics
 export async function createNewUser(userBody){
     const user = await fetch(`${baseUrl}/employees/create`, {
         method: 'POST',
@@ -64,8 +84,6 @@ export async function createNewUser(userBody){
     return user
 }
 
-// We are going to create a function that recieves an object with email and password and check if these 
-// credentials are correct
 export async function validateLoginUser(userBody){
     const user = await fetch(`${baseUrl}/auth/login`, {
         method: 'POST',
@@ -74,18 +92,16 @@ export async function validateLoginUser(userBody){
     })
     .then(async (res) => {
         if(res.ok){
-            console.log("credenciais válidas")
+            toast('login realizado com sucesso', green)
             return res.json()
         } else{
             const response = await res.json()
             alert(response.message)
         }
     })
-
     return user
 }
 
-// We are going to get an array with all the information from the logged user
 export async function getLoggedUserInformation(){
     const userInformation = await fetch(`${baseUrl}/employees/profile`, {
         method: 'GET',
@@ -99,12 +115,9 @@ export async function getLoggedUserInformation(){
             console.log(response.message)
         }
     })
-
     return userInformation
 }
 
-// We are going to create a function that recieves the category ID of the logged user and return
-// an array with these department characteristics
 export async function getCategoryInformation(categoryId){
     const categoryInformation = await fetch(`${baseUrl}/departments/readById/${categoryId}`, {
         method: 'GET',
@@ -122,7 +135,6 @@ export async function getCategoryInformation(categoryId){
     return categoryInformation
 }
 
-// We are going to get an array with all the departments
 export async function getAllDepartments(){
     const allDeparments = await fetch(`${baseUrl}/departments/readAll`, {
         method: 'GET',
@@ -140,8 +152,6 @@ export async function getAllDepartments(){
     return allDeparments
 }
 
-// We are going to create a function that recieves the company ID of the logged user and return
-// an array with these company characteristics
 export async function getCompanyById(companyId){
     const company = await fetch(`${baseUrl}/companies/readById/${companyId}`, {
         method: 'GET',
@@ -159,7 +169,6 @@ export async function getCompanyById(companyId){
     return company
 }
 
-// We are going to get an array with all the employees
 export async function getAllEmployees(){
     const AllEmployees = await fetch(`${baseUrl}/employees/readAll`, {
         method: 'GET',
@@ -177,8 +186,6 @@ export async function getAllEmployees(){
     return AllEmployees
 }
 
-// We are going to create a function that recieves an object with department information and create
-// a department with these characteristics
 export async function createNewDepartment(departmentBody){
     const newDepartment = await fetch(`${baseUrl}/departments/create`, {
         method: 'POST',
@@ -193,11 +200,9 @@ export async function createNewDepartment(departmentBody){
             console.log(response.message)
         }
     })
-
     return newDepartment
 }
 
-// We are going to get an array with all the employees that are unemployed
 export async function getAllUnemployed(){
     const allUnemployed = await fetch(`${baseUrl}/employees/outOfWork`, {
         method: 'GET',
@@ -211,12 +216,9 @@ export async function getAllUnemployed(){
             console.log(response.message)
         }
     })
-
     return allUnemployed
 }
 
-// We are going to create a function that recieves an object with departmentId and an UserId and assign
-// this employee to this department
 export async function hireEmployee(departmentId, employeeId){
     const newEmployee = await fetch(`${baseUrl}/employees/hireEmployee/${employeeId}`, {
         method: 'PATCH',
@@ -235,7 +237,6 @@ export async function hireEmployee(departmentId, employeeId){
     return newEmployee
 }
 
-// We are going to create a function that recieves an UserId and fire him
 export async function fireEmployee(employeeId){
     const firedEmployee = await fetch(`${baseUrl}/employees/dismissEmployee/${employeeId}`, {
         method: 'PATCH',
@@ -253,8 +254,6 @@ export async function fireEmployee(employeeId){
     return firedEmployee
 }
 
-// We are going to create a function that recieves an object with updated departments 
-// descriptions and update it
 export async function updateDepartment(departmentBody, departmentId){
     const departmentUpdated = await fetch(`${baseUrl}/departments/update/${departmentId}`, {
         method: 'PATCH',
@@ -269,11 +268,9 @@ export async function updateDepartment(departmentBody, departmentId){
             console.log(response.message)
         }
     })
-
     return departmentUpdated
 }
 
-// We are going to create a function that recieves the department Id and remove it
 export async function removeDepartment(departmentId){
     const departmentRemoved = await fetch(`${baseUrl}/departments/delete/${departmentId}`, {
         method: 'DELETE',
@@ -287,12 +284,9 @@ export async function removeDepartment(departmentId){
             console.log(response.message)
         }
     })
-
     return departmentRemoved
 }
 
-// We are going to create a function that recieves an object with updated user 
-// descriptions and update it
 export async function updateEmployee(employeeBody, employeeId){
     const employeeUpdated = await fetch(`${baseUrl}/employees/updateEmployee/${employeeId}`, {
         method: 'PATCH',
@@ -307,11 +301,9 @@ export async function updateEmployee(employeeBody, employeeId){
             console.log(response.message)
         }
     })
-
     return employeeUpdated
 }
 
-// We are going to create a function that recieves the employee Id and remove it
 export async function removeEmployee(employeeId){
     const employeeRemoved = await fetch(`${baseUrl}/employees/deleteEmployee/${employeeId}`, {
         method: 'DELETE',
@@ -325,11 +317,9 @@ export async function removeEmployee(employeeId){
             console.log(response.message)
         }
     })
-
     return employeeRemoved
 }
 
-// We are going to create a function that recieves the company Id and returns all the departments in it
 export async function readDepartmentsByCompany(companyId){
     const departments = await fetch(`${baseUrl}/departments/readByCompany/${companyId}`, {
         method: 'GET',
@@ -343,11 +333,9 @@ export async function readDepartmentsByCompany(companyId){
             console.log(response.message)
         }
     })
-
     return departments
 }
 
-// We are going to create a function that recieves the company Id and returns all the employees in it
 export async function readEmployeesByCompany(companyId){
     const employees = await fetch(`${baseUrl}/companies/readById/${companyId}`, {
         method: 'GET',
@@ -361,6 +349,5 @@ export async function readEmployeesByCompany(companyId){
             console.log(response.message)
         }
     })
-
     return employees
 }

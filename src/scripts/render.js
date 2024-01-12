@@ -2,10 +2,7 @@ import { getAllDepartments, getCompanyById, getAllEmployees, fireEmployee } from
 import { handleSeeDepartmentModal, handleUpdateDepartmentModal, handleRemoveDepartmentModal, handleUpdateEmployeeModal, handleDeleteEmployeeModal } from './admin.js'
 
 const allDepartments = await getAllDepartments()
-// console.log(allDepartments)
-// We are going to create a function that create the card of the department
 export async function createDepartmentCard(object){
-    // We are going to create the HTML elements
     const card = document.createElement('div')
     const cardDescriptions = document.createElement('div')
     const h1 = document.createElement('h1')
@@ -20,7 +17,6 @@ export async function createDepartmentCard(object){
     const excludeDepartment = document.createElement('button')
     const excludeDepartmentImg = document.createElement('img')
     
-    // Assigning classes and IDs to the HTML elements
     card.classList = 'department__cards--card'
     cardDescriptions.classList = 'card__descriptions'
     h1.classList = 'card__descriptions--h1 text-8'
@@ -41,12 +37,9 @@ export async function createDepartmentCard(object){
     excludeDepartmentImg.classList = 'excludeDepartment__img'
     excludeDepartmentImg.dataset.departmentId = object.id
 
-    
-    // Getting the name of the company by the company id
     const id = object.company_id
     const company = await getCompanyById(id)
     
-    // Assigning values to the HTML elements
     h1.innerHTML = object.name
     description.innerHTML = object.description
     companyName.innerHTML = company.name
@@ -54,7 +47,6 @@ export async function createDepartmentCard(object){
     editDepartmentImg.src = '../../images/editButon-Image.svg'
     excludeDepartmentImg.src = '../../images/deleteButon-Image.svg'
 
-    // Establishing the hierarchy between the elements
     card.append(cardDescriptions, cardButtons)
     cardDescriptions.append(h1, description, companyName)
     cardButtons.append(seeDepartment, editDepartment, excludeDepartment)
@@ -65,7 +57,6 @@ export async function createDepartmentCard(object){
     return card
 }
 
-// We are going to create a function that render the cards of the department
 export async function renderDepartment(array){
     const cards = document.querySelector('.department__cards')
     cards.innerHTML = ''
@@ -77,14 +68,11 @@ export async function renderDepartment(array){
         handleUpdateDepartmentModal()
         handleRemoveDepartmentModal()
     })
-
 }
 
 const allEmployees = await getAllEmployees()
-// We are going to create a function that create the card of the user to be rendered on the admin.HTML
-// page
+
 export async function createUserCard(object){
-    // We are going to create the HTML elements
     const card = document.createElement('div')
     const cardDescriptions = document.createElement('div')
     const h1 = document.createElement('h1')
@@ -96,7 +84,6 @@ export async function createUserCard(object){
     const excludeUser = document.createElement('button')
     const excludeUserImg = document.createElement('img')
     
-    // Assigning classes and IDs to the HTML elements
     card.classList = 'department__cards--card'
     cardDescriptions.classList = 'card__descriptions'
     h1.classList = 'card__descriptions--h1 text-8'
@@ -113,17 +100,18 @@ export async function createUserCard(object){
     excludeUserImg.classList = 'card__buttons--excludeUserImg'
     excludeUserImg.dataset.userId = object.id 
     
-    // Getting the name of the company by the company id
     const id = object.company_id
     const company = await getCompanyById(id)
     
-    // Assigning values to the HTML elements
     h1.innerHTML = object.name
-    description.innerHTML = company.name
+    if(id!== null){
+        description.innerHTML = company.name
+    } else{
+        description.innerHTML = 'Ainda não foi contratado'
+    }
     editUserImg.src = '../../images/editButon-Image.svg'
     excludeUserImg.src = '../../images/deleteButon-Image.svg'
 
-    // Establishing the hierarchy between the elements
     card.append(cardDescriptions, cardButtons)
     cardDescriptions.append(h1, description)
     cardButtons.append(editUser, excludeUser)
@@ -133,31 +121,24 @@ export async function createUserCard(object){
     return card
 }
 
-// We are going to create a function that render the cards of the department
 export async function renderUser(array){
     const cards = document.querySelector('.users__cards')
     cards.innerHTML = ''
 
     array.forEach(async (element) => {
-        if(element.company_id !== null){
-            const card = await createUserCard(element)
-            cards.append(card)
-        }
+        const card = await createUserCard(element)
+        cards.append(card)
         handleUpdateEmployeeModal()
         handleDeleteEmployeeModal()
     })
 }
 
-// We are going to create a function that create the card of the user to be rendered on the seeDepartment
-// modal
 export async function createModalUserCard(object){
-    // We are going to create the HTML elements
     const card = document.createElement('div')
     const h1 = document.createElement('h1')
     const p = document.createElement('p')
     const button = document.createElement('button')
 
-    // Assigning classes and IDs to the HTML elements
     card.classList = 'seeDepartment__employess-card'
     h1.classList = 'card__employee--name text-8'
     p.classList = 'card__employee--Companyname text-12'
@@ -166,16 +147,13 @@ export async function createModalUserCard(object){
 
     const company = await getCompanyById(object.company_id)
 
-    // Assigning values to the HTML elements
     h1.innerHTML = object.name
     p.innerHTML = company.name
     button.innerHTML = 'Desligar'
 
-    // Establishing the hierarchy between the elements
     card.append(h1, p, button)
     
     button.addEventListener('click', async(event) => {
-        // alert('click')
         const id = event.target.dataset.employeeId
         const modal = document.querySelector('.seeDepartment__container')
         await fireEmployee(id)
@@ -186,7 +164,6 @@ export async function createModalUserCard(object){
     return card
 }
 
-// We are going to create a function that render the cards of the department
 export async function renderModalUser(array){
     const cards = document.querySelector('.seeDepartment__employess')
     cards.innerHTML = ''
@@ -210,3 +187,4 @@ export async function renderModalUser(array){
         }
     })
 }
+

@@ -81,7 +81,7 @@
     padding: 3rem 3.5rem 1.875rem 3.5rem;
     display: flex;
     flex-wrap: wrap;
-    column-gap: 5.60rem;
+    column-gap: 3.60rem;
     row-gap: 2.6875rem;
     height: 24.0625rem;
     overflow-y: scroll;
@@ -95,7 +95,8 @@
     border-color: var(--color-brand-1);
     padding: 1.125rem 2.31rem 2.8906rem 1.8125rem;
     display: flex;
-    width: 38.3%;
+    width: 30.3%;
+    height: fit-content;
     justify-content: space-between;
 }
 
