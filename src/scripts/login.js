@@ -1,6 +1,5 @@
 import { validateLoginUser } from './requests.js'
 
-// We are going to edit the login and the register buttons and redirect to the login/register html page
 const homeButton = document.querySelector('.header__buttons--home')
 const homePath = '/index.html'
 const registerPath = '/src/pages/register.html'
@@ -13,8 +12,6 @@ function redirectPage(button, path){
     })
 }
 
-// We are going to create a function that add an event to the login button, get all the value of the 
-// inputs and insert in an object and call the function validateLoginUser() with this object as a parameter
 async function handleLogin(){
     const loginButton = document.querySelector('.main__form--loginButton')
     const inputs = document.querySelectorAll('.main__form--input')
@@ -54,14 +51,6 @@ async function handleLogin(){
         }        
     })
 }
-
-
-
-
-
-
-
-
 
 redirectPage(homeButton, homePath)
 redirectPage(registerButton, registerPath)

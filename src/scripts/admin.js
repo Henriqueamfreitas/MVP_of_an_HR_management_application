@@ -12,7 +12,7 @@ function authentication(){
     const isAdm = localStorage.getItem("@empresas:isAdm") 
     console.log(isAdm)
 
-    if(!token){ //se não existir, token = null, e, no if(), o null é considerado false
+    if(!token){ 
         location.replace('/index.html')
     }
     if(isAdm === 'false'){
@@ -20,7 +20,6 @@ function authentication(){
     }
 }
 
-// We are going to edit the logout, redirect to the login html page and clear the localStorage
 const logoutButton = document.querySelector('.header__buttons--logout')
 const loginPath = '/src/pages/login.html'
 function redirectPage(button, path){
@@ -31,32 +30,23 @@ function redirectPage(button, path){
     })
 }
 
-// We are going to get all the COMPANIES from the API and render them on the select in the Admin.html page
 async function renderSelect(){
-    // We are getting an array with all the companies from the API and assigning them to the variables 
-    // allCompanies
     const allCompanies = await getAllCompanies()
-    // We are getting the 'select' from the HTML document
+
     const select = document.querySelector('.select')
 
     allCompanies.forEach((company) => {
-        // We are going to create the HTML element
         const option = document.createElement('option')
         
-        // We are going to assign value to the element
         option.innerHTML = company.name
         
-        // We are going to assign class and id to the element
         option.value = company.id
         option.classList = 'select__option'
 
-        // We are going to establish the hirarchy between the elements
         select.append(option)
     })
 }
 
-// We are going to create the function that filters the departments and employees based on what 
-// is in the select and show them on the Admin.HTML page
 async function handleSelect(){
     const select = document.querySelector('.select')
     const departmentContainer = document.querySelector('.department__cards')
@@ -86,33 +76,22 @@ async function handleSelect(){
     })
 }
 
-// We are going to get all the EMPLOYEES from the API and render them on the select in the createDeparmtnet 
-// modal. Its the same idea as the renderSelect(), but we apply it on the createDepartment modal and with
-// employees instead of companies
 async function renderModalCompanySelect(){
-    // We are getting an array with all the companies from the API and assigning them to the variables 
-    // allCompanies
     const allCompanies = await getAllCompanies()
-    // We are getting the 'select' from the HTML document
     const select = document.querySelector('.createDepartment__form--select')
 
     allCompanies.forEach((company) => {
-        // We are going to create the HTML element
         const option = document.createElement('option')
         
-        // We are going to assign value to the element
         option.innerHTML = company.name
         
-        // We are going to assign class and id to the element
         option.value = company.id
         option.classList = 'form__select--option'
 
-        // We are going to establish the hirarchy between the elements
         select.append(option)
     })
 }
 
-// We are going to create a function that opens the create department modal
 function handleCreateDepartmentModal(){
     const openButton = document.querySelector('.department__top--button')
     const modal = document.querySelector('.createDepartment__container')
@@ -151,7 +130,6 @@ function handleCreateDepartmentModal(){
             count = 0
             alert('Por favor, preencha todos os campos')
         } else{
-            // console.log(department)
             await createNewDepartment(department)
             await renderDepartment(allDepartments)
             modal.close()
@@ -159,11 +137,7 @@ function handleCreateDepartmentModal(){
     })
 }
 
-// We are going to get all the EMPLOYEES from the API and render them on the select in the seeDeparmtnet 
-// modal. Its the same idea as the renderSelect(), but we apply it on the see department modal and with
-// employees instead of companies
 async function renderModalSeeDepartmentSelect(object){
-    // We are getting the 'select' from the HTML document
     const select = document.querySelector('.seeDepartment__select')
     select.innerHTML = ''
     const option = document.createElement('option')
@@ -172,31 +146,22 @@ async function renderModalSeeDepartmentSelect(object){
     option.classList = 'seeDepartment__select--option'
     select.append(option)
 
-
     object.forEach((employee) => {
-        // We are going to create the HTML element
         const option = document.createElement('option')
         
-        // We are going to assign value to the element
         option.innerHTML = employee.name
         
-        // We are going to assign class and id to the element
         option.value = employee.id
         option.classList = 'seeDepartment__select--option'
 
-        // We are going to establish the hirarchy between the elements
         select.append(option)
     })
 }
 
-
-// We are going to create a function that handles the create department modal
 export function handleSeeDepartmentModal(){
     const modal = document.querySelector('.seeDepartment__container')
     const openButtons = document.querySelectorAll('.card__buttons--seeDepartment')
     const closeButton = document.querySelector('.seeDepartment__closeButton')
-    
-    
     
     openButtons.forEach((button) => {
         button.addEventListener('click', (event) => {
@@ -212,8 +177,6 @@ export function handleSeeDepartmentModal(){
     })
 }
 
-
-// We are going to create a function that hire an employee
 function handleHireEmployee(){
     const createButton = document.querySelector('.seeDepartment__hireButton')
     createButton.addEventListener('click', async(event) => {
@@ -242,8 +205,6 @@ function handleHireEmployee(){
     })
 }
 
-
-// We are going to create a function that handles the update department modal
 export function handleUpdateDepartmentModal(){
     const modal = document.querySelector('.updateDepartment__container')
     const openButtons = document.querySelectorAll('.card__buttons--editDepartment')
@@ -279,7 +240,6 @@ export function handleUpdateDepartmentModal(){
     })
 }
 
-// We are going to create a function that handles the remove department modal
 export function handleRemoveDepartmentModal(){
     const modal = document.querySelector('.deleteDepartment__container')
     const openButtons = document.querySelectorAll('.card__buttons--excludeDepartment')
@@ -310,7 +270,6 @@ export function handleRemoveDepartmentModal(){
     })
 }
 
-// We are going to create a function that handles the update Employee modal
 export function handleUpdateEmployeeModal(){
     const modal = document.querySelector('.updateEmployee__container')
     const openButtons = document.querySelectorAll('.card__buttons--editUser')
@@ -355,7 +314,6 @@ export function handleUpdateEmployeeModal(){
 
 }
 
-// We are going to create a function that handles the delete Employee modal
 export function handleDeleteEmployeeModal(){
     const modal = document.querySelector('.deleteEmployee__container')
     const openButtons = document.querySelectorAll('.card__buttons--excludeUser')
@@ -385,7 +343,6 @@ export function handleDeleteEmployeeModal(){
 
 }
 
-// We are going to create a function that closes any modal
 function closeModal(button, modal){
     button.addEventListener('click', (event) => {
         event.preventDefault()
@@ -393,19 +350,15 @@ function closeModal(button, modal){
     })
 }
 
-// We are going to create a function that add text if there are departments in the company
 async function addAndRemoveText(){
     const textNoDepartments = document.querySelector('.cards__noDepartments')
     const companyId = localStorage.getItem("@empresas:company_id")
     const select = document.querySelector('.select')
-    // console.log(select.value)
 
     const company = await getCompanyById(companyId)
     
     let classStyle = 'hidden'
     const departments = await readDepartmentsByCompany(companyId)
-    // console.log(departments)
-    console.log(departments[0])
 
     if((select.value !== '') && (departments[0] === undefined)){
         textNoDepartments.classList.remove(classStyle)
@@ -416,7 +369,6 @@ async function addAndRemoveText(){
     }
 }
 
-console.log(allEmployees)
 handleCreateDepartmentModal()
 redirectPage(logoutButton, loginPath)
 renderDepartment(allDepartments)

@@ -1,4 +1,4 @@
-import { getLoggedUserInformation, getCategoryInformation, getCompanyById, readEmployeesByCompany } from './requests.js'
+import { getLoggedUserInformation, getCompanyById, readEmployeesByCompany } from './requests.js'
 
 function authentication(){
     const token = localStorage.getItem("@empresas:token") 
@@ -12,7 +12,6 @@ function authentication(){
     }
 }
 
-// We are going to edit the logout, redirect to the login html page and clear the localStorage
 const logoutButton = document.querySelector('.header__buttons--logout')
 const loginPath = '/src/pages/login.html'
 function redirectPage(button, path){
@@ -22,7 +21,6 @@ function redirectPage(button, path){
         location.replace(path)
     })
 }
-
 
 const userInformation = await getLoggedUserInformation()
 
@@ -41,13 +39,11 @@ async function createUserCard(object){
 }
 
 async function renderUserCard(){
-    // Getting the HTML elements from the document
     const userName = document.querySelector('.userInformation__container--h2')
     const email = document.querySelector('.userInformation__container--p')
     const controller = document.querySelector('.company__controller')
     const employees = document.querySelector('.company__employees')
    
-    // Assgining value to the HTML elements
     userName.innerHTML = userInformation.name
     email.innerHTML = userInformation.email
 
@@ -71,7 +67,6 @@ async function renderUserCard(){
 
         const companyDescription = document.createElement('p')        
 
-        // Assgining value to the HTML elements
         companyDescription.innerHTML = `${company.name} - ${filteredDepartment[0].name}`
         companyDescription.classList = 'company__employees--companyDescription text-3'
 
@@ -84,7 +79,6 @@ async function renderUserCard(){
         })
     }
 }
-
 
 renderUserCard()
 redirectPage(logoutButton, loginPath)
