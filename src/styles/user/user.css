@@ -1,8 +1,7 @@
-/* HEADER */
 .header{
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid grey;
+    border-bottom: .0625rem solid grey;
     padding: 1rem 8.75rem 1rem 8.75rem;
     margin-bottom: 1.5rem;
 }
@@ -30,17 +29,15 @@
     cursor: pointer;
 }
 
-
-/* MAIN */
 .main{
     padding-right: 8.75rem;
     padding-left: 8.75rem;
-    padding-bottom: 243px;
+    padding-bottom: 15.1875rem;
 }
 
 .userInformation__container{
     padding: 1rem 0rem 3.0625rem 1.9375rem;
-    border: solid 1px rgb(218, 217, 217);
+    border: solid .0625rem rgb(218, 217, 217);
     margin-bottom: 2.4375rem;
 }
 
@@ -55,9 +52,6 @@
     flex-direction: column;
 }
 
-
-
-/* HIRED EMPLOYEE */
 .company__employees{
     display: flex;
     flex-wrap: wrap;
@@ -79,7 +73,7 @@
 }
 
 .company__employees--card{
-    border: 1px solid blue;
+    border: .0625rem solid blue;
     padding-top: .9375rem;
     padding-left: 1.1875rem;
     width: 19.875rem;
@@ -88,13 +82,11 @@
 
 /* .employees__card--h2{} */
 
-
-/* UNEMPLOYED EMPLOYEE */
 .company__controller--pUnemployeed{
     height: 28.0006rem;
     background-color: rgb(223, 221, 221);
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid rgb(158, 157, 157);
+    border: .0625rem solid rgb(158, 157, 157);
 }
