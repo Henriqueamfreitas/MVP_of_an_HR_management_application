@@ -21,4 +21,4 @@ Para utilização desta API você precisa seguir os seguintes passos:
 obs. Os passos 3, 4, 5 devem ser executados apenas uma vez!
 
 **Tecnologias**: HTML, CSS, Javascript
-**Link**:
+**Link**: https://mvp-of-an-hr-management-application.vercel.app/
